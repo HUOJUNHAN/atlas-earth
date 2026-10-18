@@ -1,0 +1,5 @@
+site/
+node_modules/
+*.log
+scripts/*results.json
+scripts/*.png

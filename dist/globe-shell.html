@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07151c">
+  <meta name="description" content="ATLAS 星图 — 转动一颗真实的三维地球，在海洋、大陆与城市之间探索。支持鼠标、触屏与手势。">
+  <title>ATLAS 星图 · 三维地球</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='25' fill='none' stroke='%2381dfd0' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='12' ry='25' fill='none' stroke='%2381dfd0' stroke-width='2'/%3E%3Cpath d='M7 32h50M12 18h40M12 46h40' stroke='%2381dfd0' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="globe.css?v=3">
+  <link rel="stylesheet" href="atlas-ui.css?v=1">
+  <link rel="stylesheet" href="globe-polish.css?v=1">
+  <link rel="stylesheet" href="city-intro.css?v=1">
+  <link rel="stylesheet" href="capital-ui.css?v=1">
+  <link rel="stylesheet" href="atlas-finish.css?v=1">
+</head>
+<body data-view="globe">
+  <main id="universe" aria-label="可交互的三维地球">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div id="scene"></div>
+    <canvas id="labels" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+  </main>
+  <div class="interface" id="interface">
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="ATLAS 星图 世界地图">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13"/><ellipse cx="16" cy="16" rx="6.5" ry="13"/><path d="M3 16h26M5.5 8h21M5.5 24h21"/></svg>
+        <span class="brand-name">ATLAS<span class="brand-divider"></span><span class="brand-cn">星图</span></span>
+      </a>
+      <nav class="view-switch" aria-label="地图视图">
+        <a href="./"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m2 4 5-2 6 2 5-2v14l-5 2-6-2-5 2zM7 2v14M13 4v14"/></svg>世界地图</a>
+        <a href="globe" class="view-active" aria-current="page"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><ellipse cx="10" cy="10" rx="3.5" ry="7.5"/><path d="M2.5 10h15"/></svg>三维地球</a>
+        <a href="galaxy"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><ellipse cx="10" cy="10" rx="8" ry="3.5" transform="rotate(-35 10 10)"/><circle cx="10" cy="10" r="1.5"/><path d="m4 4 1 1m10 10 1 1"/></svg>银河系</a>
+      </nav>
+      <nav class="header-actions" aria-label="场景工具">
+        <button id="camera-button" class="icon-button camera-button" title="开启摄像头手势控制" aria-label="开启摄像头手势控制"><svg viewBox="0 0 24 24" fill="none"><path d="M8 6l1.5-2h5L16 6h4v13H4V6z"/><circle cx="12" cy="12" r="3.5"/></svg><span>开启手势</span></button>
+        <button id="settings-button" class="icon-button" title="手势与操作说明" aria-label="手势与操作说明" aria-expanded="false" aria-controls="settings-panel"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg></button>
+        <button id="fullscreen-button" class="icon-button" title="全屏（F）" aria-label="全屏"><svg viewBox="0 0 24 24" fill="none"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></svg></button>
+      </nav>
+    </header>
+    <section class="hero-heading" aria-label="介绍">
+      <div class="eyebrow"><span></span>PLANET EARTH</div>
+      <h1>把世界，握在手中<span class="title-dot">.</span></h1>
+      <p>一颗星球，万千种相遇。<br>转动地球，在光影之间发现世界。</p>
+    </section>
+    <aside class="glass-panel city-card" aria-label="当前地点">
+      <div class="panel-kicker"><i class="selection-dot"></i>此刻抵达<span class="small-rule"></span><span class="city-card-code">EARTH / 01</span></div>
+      <div class="city-heading"><h2 id="globe-city-name">上海</h2><span id="globe-city-region" class="region-tag">中国 · 亚洲</span></div>
+      <p id="globe-city-english" class="city-english">SHANGHAI</p>
+      <p id="globe-city-description" class="city-description" aria-live="polite"></p>
+      <div id="globe-city-capital-meta" class="capital-meta" hidden><span id="globe-city-capital-role"></span><details id="globe-city-capital-notes" hidden><summary>职能说明</summary><p id="globe-city-capital-note-text"></p></details></div>
+      <div class="city-position"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="5"/><path d="M10 1v4m0 10v4M1 10h4m10 0h4"/></svg><span id="globe-city-coordinate">31.23° N &nbsp; 121.47° E</span></div>
+      <p class="city-card-hint">放大探索更多地点 · 点击阅读介绍</p>
+    </aside>
+    <aside class="glass-panel globe-controls" aria-label="地球探索工具">
+      <input id="controls-expand" class="controls-expand" type="checkbox" aria-label="展开观察设置" aria-controls="globe-observation-settings">
+      <div class="control-topline"><span>星球视图</span><span class="control-topline-en">VIEW</span></div>
+      <div class="mode-switch" role="group" aria-label="地球显示模式">
+        <button id="realistic-mode" aria-pressed="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m8 3.8 1.5 3 3.5 1-1 3-3.5 1.5L7 15l-1.5-4 2-3.5"/></svg>真实地球</button>
+        <button id="particle-mode" aria-pressed="false"><svg viewBox="0 0 20 20" fill="currentColor" stroke="none" aria-hidden="true"><circle cx="5" cy="5" r="1"/><circle cx="10" cy="3" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="3" cy="10" r="1"/><circle cx="8" cy="9" r="1"/><circle cx="13" cy="10" r="1"/><circle cx="17" cy="10" r="1"/><circle cx="5" cy="15" r="1"/><circle cx="10" cy="17" r="1"/><circle cx="15" cy="15" r="1"/></svg>粒子星球</button>
+      </div>
+      <div class="search-wrap">
+          <label class="search-field" for="globe-search"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg><input type="search" id="globe-search" placeholder="搜索城市、国家或岛屿" autocomplete="off" aria-label="搜索城市、国家或岛屿" aria-controls="globe-search-results"><span class="search-key">⌕</span></label>
+          <div id="globe-search-results" class="search-results" role="listbox" hidden></div>
+      </div>
+      <div class="explore-actions"><button id="demo-button" class="tour-button" aria-pressed="false" title="环球巡游（D）"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 9 6-9 6z"/></svg><span>环球巡游</span><svg class="tour-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></button><button id="reset-button" class="reset-button" title="回到初始视角（R）" aria-label="回到初始视角"><svg viewBox="0 0 20 20" fill="none"><path d="M4 6a7 7 0 1 1 0 8M4 2v4h4"/></svg></button></div>
+      <label for="controls-expand" class="controls-expander"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5h14M3 15h14M7 2v6M13 12v6"/></svg><span>观察设置</span><svg class="expand-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg></label>
+      <div class="control-body" id="globe-observation-settings">
+        <div class="settings-heading"><span>观察设置</span><span>SETTINGS</span></div>
+        <p class="capital-legend"><i></i>金色标记 · 首都与行政中心</p>
+        <div class="layer-options">
+          <label class="layer-option"><span>只看首都与行政中心</span><input id="capital-only" type="checkbox"><i class="toggle-track"></i></label>
+          <label class="layer-option"><span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6a7 7 0 1 1 0 8M4 2v4h4"/></svg>自动旋转</span><input id="auto-rotate" type="checkbox" checked><i class="toggle-track"></i></label>
+          <label class="layer-option"><span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="4" cy="14" r="2"/><circle cx="16" cy="6" r="2"/><path d="M6 13C8 5 10 6 14 6"/></svg>城市连线</span><input id="show-routes" type="checkbox" checked><i class="toggle-track"></i></label>
+          <label class="layer-option"><span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3h14v10H9l-4 4v-4H3zM6 7h8M6 10h5"/></svg>城市名称</span><input id="show-labels" type="checkbox" checked><i class="toggle-track"></i></label>
+        </div>
+        <div class="range-heading"><label for="zoom-slider">观察距离</label><output id="slider-output">1.00×</output></div>
+        <div class="range-row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4"/><path d="M1 10h3m12 0h3"/></svg><input id="zoom-slider" type="range" min="0.7" max="4.2" step="0.01" value="1" aria-label="地球缩放"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 6v8M6 10h8"/></svg></div>
+      </div>
+    </aside>
+    <aside class="glass-panel help-panel" id="settings-panel" hidden aria-label="手势与操作说明">
+      <div class="panel-heading"><div><span class="help-kicker">A LITTLE MAGIC</span><h2>伸手，转动世界</h2></div><button id="close-settings" class="close-button" aria-label="关闭说明"><svg viewBox="0 0 20 20" fill="none"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div>
+      <p class="panel-note">打开摄像头，让手掌完整入镜。</p>
+      <div class="gesture-guide">
+        <div><span class="gesture-number">01</span><p><b>展开 / 握拳</b><small>放大 / 缩小地球</small></p><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M9 22 5 14c-.9-2 1-3.3 2.3-1.7L10 16V7c0-2 3-2 3 0v7-10c0-2 3-2 3 0v10-9c0-2 3-2 3 0v9-6c0-2 3-2 3 0v10c0 5-4 7-7 7s-4-1-6-3Z"/></svg></div>
+        <div><span class="gesture-number">02</span><p><b>捏合并移动</b><small>旋转观察方向</small></p><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 20c-2-2-1-4 1-6l4-4c2-2 5-1 5 1s-2 3-4 3l-3 3m5-4 3-4c2-2 4 0 3 2l-2 4m2-3c3-1 5 1 3 4l-2 4c-3 6-9 6-13 2Z"/></svg></div>
+        <div><span class="gesture-number">03</span><p><b>比一个 V</b><small>召唤一场流星雨</small></p><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="m12 16-5-11c-1-2 2-3 3-1l5 9 4-10c1-2 4-1 3 1l-4 12c5-2 6 3 3 7-3 4-7 3-11 0l-4-7c-1-2 1-4 3-2l3 2Z"/></svg></div>
+      </div>
+      <p class="mouse-guide">鼠标拖动旋转 · 滚轮缩放 · 点击城市<br>触屏拖动旋转 · 双指缩放</p>
+      <div class="panel-actions"><button id="meteor-button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 16 10-10M9 16l7-7M4 11l7-7"/><circle cx="4" cy="16" r="1"/></svg>流星雨<kbd>M</kbd></button><button id="cinema-button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg>沉浸模式<kbd>H</kbd></button></div>
+      <p class="privacy-note"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 6h8v6H3zM4 6V4a3 3 0 0 1 6 0v2"/></svg>摄像头画面仅在本机处理</p>
+    </aside>
+    <footer class="atlas-footer">
+      <div class="footer-status"><span class="status-dot"></span><span>LIVE EXPLORATION</span><span class="footer-separator">/</span><span id="tracking-status">自由探索</span><span class="footer-secondary" id="input-status">鼠标控制已就绪</span></div>
+      <p class="interaction-hint">拖动旋转<span>·</span>滚轮缩放<span>·</span>点击城市</p>
+      <div class="coordinate-readout"><span id="latitude">31.23° N</span><span class="coordinate-divider">/</span><span id="longitude">121.47° E</span></div>
+      <div class="screen-reader-readouts" aria-hidden="true"><span id="zoom-value">1.00×</span><span id="fps">— FPS</span><span id="gesture">鼠标 · 待机</span><span id="particle-count">初始化</span><span id="city-count">—</span><span id="route-count">—</span><span id="view-mode">真实地球</span></div>
+    </footer>
+    <div id="camera-preview" class="camera-preview" hidden><video id="camera-video" autoplay muted playsinline></video><canvas id="hand-overlay"></canvas><div class="camera-caption"><span class="status-dot"></span><span id="camera-status">等待手掌入镜</span><button id="hide-camera" title="收起摄像头预览" aria-label="收起摄像头预览"><svg viewBox="0 0 16 16" fill="none"><path d="M4 8h8"/></svg></button></div></div>
+    <div id="demo-progress" class="demo-progress" hidden><span id="demo-fill"></span><p><span class="demo-label">环球巡游</span><button id="stop-demo">结束巡游<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="m4 4 6 6M10 4l-6 6"/></svg></button></p></div>
+  </div>
+  <div class="event-title" id="event-title" aria-live="polite"><h2></h2><p></p></div>
+  <div class="loading" id="loading"><span class="loading-orbit"></span><p>正在绘制星球</p><small>海洋、大陆与城市正在就位</small></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <button id="exit-cinema" hidden aria-label="退出沉浸模式">退出沉浸<kbd>H</kbd></button>
+  <script type="module" src="app.js?v=11"></script>
+</body>
+</html>

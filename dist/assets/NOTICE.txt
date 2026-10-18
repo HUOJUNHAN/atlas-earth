@@ -1,0 +1,99 @@
+Geographic data: Natural Earth, 1:110m land polygons.
+Natural Earth data is in the public domain.
+Primary source: https://www.naturalearthdata.com/downloads/110m-physical-vectors/110m-land/
+GeoJSON: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson
+Generated assets: earth-texture.png, land-mask.png, land-points.json, ocean-points.json.
+Texture: equirectangular, longitude -180 at left, +180 at right, latitude +90 at top.
+Point coordinates: x=cos(lat)*sin(lon), y=sin(lat), z=cos(lat)*cos(lon).
+
+World map boundaries: Natural Earth, 1:50m Admin 0 - Countries.
+Natural Earth data is in the public domain.
+Primary source: https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/
+GeoJSON: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson
+File: world-countries.geojson (unmodified upstream data).
+World map searchable places: cities.json, 558 entries, including the retained first 266 city nodes.
+The world map and 3D globe load the same 558 searchable places, each with an original introduction.
+Fields: name (Chinese), en (English), lat (degrees), lon (degrees), region (Chinese continent).
+China city metadata additionally includes country, province, timezone (IANA), aliases, capital, kind and description.
+Regions: Asia, Europe, Africa, North America, South America, Oceania. Istanbul is classified in Europe; Honolulu in North America.
+The world map is a geographic visualization. Upstream feature properties and geometry are preserved.
+
+Font: Manrope variable font, Google Fonts repository.
+Source: https://github.com/google/fonts/tree/main/ofl/manrope
+File: manrope.ttf (unmodified Manrope[wght].ttf from upstream).
+License: SIL Open Font License 1.1; see LICENSE-manrope.txt.
+
+3D Earth imagery: unmodified planet textures from the official three.js r160 examples.
+Upstream directory: https://github.com/mrdoob/three.js/tree/r160/examples/textures/planets
+Pinned upstream files (all 2048 x 1024, equirectangular):
+earth-day.jpg <- earth_atmos_2048.jpg
+earth-normal.jpg <- earth_normal_2048.jpg
+earth-specular.jpg <- earth_specular_2048.jpg
+earth-night.png <- earth_lights_2048.png
+earth-clouds.png <- earth_clouds_2048.png (RGBA cloud transparency)
+Download base: https://raw.githubusercontent.com/mrdoob/three.js/r160/examples/textures/planets/
+The upstream three.js repository carries the MIT license, included as LICENSE-threejs.txt.
+Original imagery credit is not separately stated alongside these upstream files; no claim of current weather or real-time city lighting is made.
+Texture orientation: longitude -180 degrees at left, +180 at right, latitude +90 at top. Compatible with the project's geographic UV convention.
+
+Denser 3D globe point assets: land-points-dense.json and ocean-points-dense.json.
+Regenerated 2026-10-17 from the existing Natural Earth land-mask.png using seeded uniform sphere proposals and minimum-distance rejection (radii 1.004 land and 1.002 ocean).
+Retains 86,337 land and 43,185 ocean points. Equal-area sampling avoids polar crowding; minimum-distance random sampling avoids latitude bands and spiral moire.
+Reproduction script: qa/generate_equal_area_earth.py. No geographic boundaries or city coordinates are changed.
+Globe coastline contours use the existing ne_110m_land.geojson (Natural Earth, public domain).
+Point coordinates retain x=cos(lat)*sin(lon), y=sin(lat), z=cos(lat)*cos(lon).
+Dense city light locations: Natural Earth, 1:50m Populated Places, public domain.
+Primary source: https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-populated-places/
+GeoJSON: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_populated_places.geojson
+Cached source: qa/sources/ne_50m_populated_places.geojson; SHA-256 da4662b7bbfeb897d02f228c5839131dce27acff5717630f91ccff4f67828ee7.
+Generated file: dense-city-lights.json, 500 cities selected from actual upstream coordinates.
+Selection retains national capitals, minimum continent coverage, then largest POP_MAX values.
+The population field retains Natural Earth's historical metropolitan POP_MAX estimate.
+These decorative city lights do not indicate live electricity or weather conditions.
+The 500 former decorative light locations now resolve to named, selectable entries in cities.json.
+The 3D globe does not render a separate, noninteractive city-light cloud. It draws all named pins in one Canvas pass.
+
+
+Additional world map city coordinates (2026-10-15):
+27 added cities use Natural Earth 1:50m Populated Places LATITUDE/LONGITUDE fields, public domain.
+Primary source: https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-populated-places/
+GeoJSON: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_populated_places.geojson
+Cached source: qa/sources/ne_50m_populated_places.geojson.
+These include Baoshan (Yunnan), latitude 25.119977, longitude 99.150010, upstream NAME=Baoshan and ADM1NAME=Yunnan.
+The original 68 city names, English labels, coordinates and continent fields are retained.
+Shenyang's English display label normalizes the upstream Shenyeng spelling; Xining's province label is Qinghai.
+Haikou coordinates: latitude 20.034210, longitude 110.346510, GeoNames ID 1809078.
+Source and attribution: GeoNames, https://www.geonames.org/1809078/haikou.html (accessed 2026-10-15).
+GeoNames data: Creative Commons Attribution 4.0, https://creativecommons.org/licenses/by/4.0/
+GeoNames terms: https://www.geonames.org/about.html
+Haikou coordinates are used without modification; city display metadata is authored for this project.
+
+World capitals and related government centers (reference checked 2026-10-15):
+Scope: 193 United Nations member states plus the Holy See and the State of Palestine (195 countries).
+There are 205 capital/center markers, with distinct capital, legislative, judicial and government-seat roles.
+Scope references: https://www.un.org/en/about-us/member-states and https://www.un.org/en/about-us/non-member-states
+Coordinate and IANA timezone source: GeoNames cities500, https://download.geonames.org/export/dump/cities500.zip
+GeoNames data: Creative Commons Attribution 4.0, https://creativecommons.org/licenses/by/4.0/
+Attribution and terms: GeoNames, https://www.geonames.org/about.html
+Most newly added coordinates are used without modification from the 2026-10-15 GeoNames snapshot.
+The East Jerusalem marker is approximate, near the Old City; it does not define a boundary or resolve city status.
+The first 96 established city nodes keep their order and original coordinates; 35 are reused for matching physical capitals/centers.
+Country names and continent metadata also reference Natural Earth 1:10m Admin 0 - Countries (public domain):
+https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson
+Chinese city names are reviewed against Natural Earth 1:10m Populated Places (public domain) and corrected display names:
+https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_populated_places.geojson
+City descriptions are original project copy. The original 36 China city descriptions and provincial metadata are retained.
+Runtime coverage, roles and source URLs: capitals-meta.json. The larger source snapshots remain in qa/sources only.
+The older capital flag describes Chinese provincial centers; nationalCapital separately marks the capital/center collection.
+Kingston (Jamaica) and Kingstown (Saint Vincent and the Grenadines) are distinct nodes despite their shared Chinese display name.
+
+All-place introduction update (2026-10-17):
+558 selectable places; 558 individually authored Chinese introductions; 47 island and regional points.
+All first 266 IDs, names, coordinates, capital roles and the existing 240 introductions are retained.
+The former 500 decorative source lights are matched to the catalog; source-to-node mapping is in qa/all-point-coverage.json.
+Additional populated island centers use GeoNames cities500 (2026-10-15 snapshot), CC BY 4.0, attribution above.
+Seven remote island / geographic markers use approximate locality coordinates, not city boundaries or claims of capital status.
+Country / region labels are geographic display metadata. nationalCapital flags and the 195-country capital scope are unchanged.
+No national-capital flag is assigned to the added island or regional points.
+Runtime coverage: places-meta.json. Migration: qa/extend_point_catalog.py and qa/apply_all_point_copy.py.
+Original Chinese copy: qa/all-point-copy.tsv. Island background references are listed in qa/sources/ALL_POINT_INTRO_SOURCES.md.

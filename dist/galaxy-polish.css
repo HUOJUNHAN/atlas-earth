@@ -1,0 +1,186 @@
+/* Galaxy interface finish: the view and the journey lead; settings stay one tap away. */
+body[data-view="galaxy"] .galaxy-controls {
+  right: var(--ui-gutter);
+  bottom: 88px;
+  width: 270px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+body[data-view="galaxy"] .control-topline {
+  color: #d8cbe8;
+  font-size: 11px;
+  font-weight: 500;
+  margin: 0 0 11px;
+}
+body[data-view="galaxy"] .control-topline-en { font-size: 9px; letter-spacing: 1.4px; color: #a497b7; }
+body[data-view="galaxy"] .preset-switch {
+  flex: none;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 9px;
+  border-color: rgba(201,185,255,.15);
+  background: rgba(0,0,0,.16);
+}
+body[data-view="galaxy"] .preset-switch button {
+  min-height: 37px;
+  gap: 7px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #b3a6c5;
+}
+body[data-view="galaxy"] .preset-switch button[aria-pressed="true"] {
+  color: #f0e8ff;
+  background: linear-gradient(125deg,rgba(201,185,255,.2),rgba(201,185,255,.12));
+  box-shadow: inset 0 0 0 1px rgba(201,185,255,.13);
+}
+body[data-view="galaxy"] .preset-switch svg { width: 15px; height: 15px; }
+body[data-view="galaxy"] .explore-actions { order: 2; margin-top: 10px; gap: 8px; }
+body[data-view="galaxy"] .warp-button {
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .6px;
+  padding: 0 13px;
+  border-radius: 8px;
+  border-color: rgba(201,185,255,.35);
+  background: linear-gradient(115deg,rgba(142,107,235,.27),rgba(117,184,210,.12));
+  color: #eee5ff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+body[data-view="galaxy"] .warp-button:hover,
+body[data-view="galaxy"] .warp-button[aria-pressed="true"] {
+  background: linear-gradient(115deg,rgba(142,107,235,.42),rgba(117,184,210,.19));
+  border-color: rgba(201,185,255,.55);
+  box-shadow: 0 0 24px rgba(154,125,231,.12),inset 0 1px 0 rgba(255,255,255,.09);
+}
+body[data-view="galaxy"] .warp-button svg { width: 16px; height: 16px; }
+body[data-view="galaxy"] .warp-button .warp-arrow { position: static; margin-left: auto; width: 14px; height: 14px; }
+body[data-view="galaxy"] .reset-button { width: 44px; min-height: 44px; background: rgba(0,0,0,.13); }
+body[data-view="galaxy"] .controls-expander {
+  display: flex;
+  order: 3;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  height: 28px;
+  margin: 8px 0 -3px;
+  font-size: 11px;
+  line-height: 1;
+  color: #b5a7c7;
+  cursor: pointer;
+  align-self: stretch;
+}
+body[data-view="galaxy"] .controls-expander > svg { width: 13px; height: 13px; }
+body[data-view="galaxy"] .controls-expander .expand-chevron { margin-left: 1px; color: #a696bd; transition: transform .2s; }
+body[data-view="galaxy"] .controls-expander:hover { color: #e4d9f7; }
+body[data-view="galaxy"] .controls-expand:focus-visible ~ .controls-expander { outline: 2px solid var(--ui-accent); outline-offset: 4px; border-radius: 4px; }
+body[data-view="galaxy"] .controls-expand:checked ~ .controls-expander { color: #e0ceff; }
+body[data-view="galaxy"] .controls-expand:checked ~ .controls-expander .expand-chevron { transform: rotate(180deg); }
+body[data-view="galaxy"] .control-body {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  width: 270px;
+  padding: 16px;
+  max-height: calc(100dvh - 320px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #66547b transparent;
+  border: 1px solid rgba(201,185,255,.19);
+  border-radius: 14px;
+  background: linear-gradient(145deg,rgba(22,16,39,.96),rgba(15,11,30,.94));
+  box-shadow: 0 16px 42px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.04);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  z-index: 9;
+}
+body[data-view="galaxy"] .controls-expand:checked ~ .control-body { display: block; }
+body[data-view="galaxy"] .settings-heading { margin: 0 0 8px; font-size: 11px; color: #c9badb; }
+body[data-view="galaxy"] .settings-heading > span:last-child { font-size: 9px; color: #a292b6; letter-spacing: 1.3px; }
+body[data-view="galaxy"] .layer-option { min-height: 38px; font-size: 12px; color: #c5b7d6; }
+body[data-view="galaxy"] .layer-option svg { color: #b49cca; }
+body[data-view="galaxy"] .range-heading { margin-top: 12px; padding-top: 14px; font-size: 11px; color: #b8a9c9; }
+body[data-view="galaxy"] .range-heading output { font-size: 11px; color: #ded0ee; }
+body[data-view="galaxy"] .range-row { height: 26px; margin-top: 7px; }
+body[data-view="galaxy"] .range-row input { height: 3px; }
+body[data-view="galaxy"] .range-row svg { width: 14px; height: 14px; color: #aa95bd; }
+body[data-view="galaxy"] .chapter-card { left: var(--ui-gutter); bottom: 111px; width: 275px; }
+body[data-view="galaxy"] .chapter-code,
+body[data-view="galaxy"] .small-rule,
+body[data-view="galaxy"] .chapter-line { display: none; }
+body[data-view="galaxy"] .chapter-card .panel-kicker { color: #b4a8c4; font-size: 10px; letter-spacing: .5px; }
+body[data-view="galaxy"] .chapter-card h2 { font-size: 23px; letter-spacing: 1px; margin: 10px 0 8px; color: #eadff2; }
+body[data-view="galaxy"] .chapter-card p { font-size: 11px; line-height: 1.8; color: #b3a5c4; }
+body[data-view="galaxy"] .footer-label { font-size: 9px; letter-spacing: 1.3px; color: #a798bc; }
+body[data-view="galaxy"] .footer-detail,
+body[data-view="galaxy"] .footer-detail > span:last-child { font-size: 10px; color: #b0a0c3; }
+body[data-view="galaxy"] .footer-status #galaxy-state { color: #c7b6dc; }
+body[data-view="galaxy"] .camera-caption { font-size: 10px; }
+
+@media(max-width:700px) {
+  body[data-view="galaxy"] .galaxy-controls {
+    left: var(--ui-gutter); right: var(--ui-gutter); bottom: 57px;
+    width: auto; padding: 13px;
+    border: 1px solid rgba(201,185,255,.16);
+    border-radius: 14px;
+    background: linear-gradient(145deg,rgba(15,11,30,.86),rgba(15,11,30,.73));
+    box-shadow: 0 12px 36px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.04);
+    backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+  }
+  body[data-view="galaxy"] .control-topline { display: none; }
+  body[data-view="galaxy"] .preset-switch { background: rgba(0,0,0,.12); backdrop-filter: none; }
+  body[data-view="galaxy"] .preset-switch button { min-height: 37px; font-size: 12px; }
+  body[data-view="galaxy"] .explore-actions { margin-top: 9px; }
+  body[data-view="galaxy"] .warp-button { justify-content: flex-start; min-height: 43px; }
+  body[data-view="galaxy"] .reset-button { width: 43px; min-height: 43px; }
+  body[data-view="galaxy"] .controls-expander { height: 26px; font-size: 11px; margin-top: 7px; }
+  body[data-view="galaxy"] .control-body {
+    right: 0; bottom: calc(100% + 10px); width: min(270px,calc(100vw - 40px));
+    max-height: min(236px,calc(100dvh - 452px)); padding: 15px;
+  }
+  body[data-view="galaxy"] .chapter-card { left: var(--ui-gutter); bottom: 240px; width: calc(100vw - 40px); }
+  body[data-view="galaxy"] .chapter-card .panel-kicker { display: none; }
+  body[data-view="galaxy"] .chapter-card h2 { font-size: 18px; line-height: 1.4; letter-spacing: 1px; margin: 0; color: #d4c4e5; }
+  body[data-view="galaxy"] .chapter-card p { display: none; }
+  body[data-view="galaxy"] .interface:has(.controls-expand:checked) .chapter-card { visibility: hidden; }
+  body[data-view="galaxy"] .footer-detail,
+  body[data-view="galaxy"] .footer-detail > span:last-child { font-size: 10px; }
+  body[data-view="galaxy"] .footer-detail { gap: 7px; }
+  body[data-view="galaxy"] .camera-caption { font-size: 10px; }
+}
+@media(max-width:700px) and (min-height:481px) and (max-height:700px) {
+  body[data-view="galaxy"] .galaxy-controls { bottom: 48px; }
+  body[data-view="galaxy"] .chapter-card { display: none; }
+}
+@media(max-height:480px) {
+  body[data-view="galaxy"] .chapter-card { display: none; }
+  body[data-view="galaxy"] .galaxy-controls {
+    left: auto; right: var(--ui-gutter); bottom: 42px;
+    width: 244px; padding: 12px;
+  }
+  body[data-view="galaxy"] .control-topline { display: none; }
+  body[data-view="galaxy"] .preset-switch button { min-height: 34px; font-size: 11px; gap: 6px; }
+  body[data-view="galaxy"] .preset-switch svg { width: 14px; height: 14px; }
+  body[data-view="galaxy"] .explore-actions { margin-top: 8px; }
+  body[data-view="galaxy"] .warp-button { min-height: 38px; font-size: 11px; padding: 0 11px; }
+  body[data-view="galaxy"] .reset-button { width: 38px; min-width: 38px; min-height: 38px; }
+  body[data-view="galaxy"] .controls-expander { height: 25px; font-size: 10px; margin-top: 6px; }
+  body[data-view="galaxy"] .control-body {
+    right: calc(100% + 10px); bottom: 0; width: 228px;
+    padding: 14px; max-height: calc(100dvh - 118px);
+  }
+  body[data-view="galaxy"] .settings-heading { font-size: 10px; margin-bottom: 5px; }
+  body[data-view="galaxy"] .layer-option { min-height: 36px; font-size: 11px; }
+  body[data-view="galaxy"] .range-heading { margin-top: 9px; padding-top: 11px; font-size: 10px; }
+  body[data-view="galaxy"] .range-heading output { font-size: 10px; }
+  body[data-view="galaxy"] .range-row { margin-top: 5px; }
+  body[data-view="galaxy"] .footer-detail,
+  body[data-view="galaxy"] .footer-detail > span:last-child { font-size: 10px; }
+}
+@media(max-width:520px) and (max-height:480px) {
+  body[data-view="galaxy"] .galaxy-controls { width: 230px; }
+  body[data-view="galaxy"] .control-body { right: 0; bottom: calc(100% + 8px); width: 230px; max-height: calc(100dvh - 245px); }
+}

@@ -1,0 +1,37 @@
+/* Final details: restrained light, tactile controls, and a quieter frame. */
+.header-actions .sound-button { width:43px; padding:0; }
+.sound-button svg { stroke:currentColor; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
+.sound-button .sound-waves { display:none; }
+.sound-button[aria-pressed="true"] .sound-waves { display:block; }
+.sound-button[aria-pressed="true"] .sound-slash { display:none; }
+.header-actions .sound-button[aria-pressed="true"] { color:var(--ui-accent); border-color:rgba(var(--ui-accent-rgb),.4); background:rgba(var(--ui-accent-rgb),.11); box-shadow:0 0 22px rgba(var(--ui-accent-rgb),.055); }
+.masthead .view-switch { border-color:rgba(var(--ui-accent-rgb),.13); }
+.glass-panel { border-color:rgba(var(--ui-accent-rgb),.13); background:linear-gradient(135deg,rgba(var(--ui-surface),.86),rgba(var(--ui-surface),.55)); box-shadow:0 20px 60px #0003,inset 0 1px 0 #ffffff09; }
+.city-card { border-top-color:rgba(225,203,161,.28); }
+.hero-heading .eyebrow > span { background:linear-gradient(90deg,var(--ui-accent),transparent); }
+.search-field:focus-within { border-color:rgba(var(--ui-accent-rgb),.45); box-shadow:0 0 0 3px rgba(var(--ui-accent-rgb),.045); }
+.tour-button,.warp-button { background:linear-gradient(115deg,rgba(233,207,163,.10),rgba(233,207,163,.025)); }
+.tour-button:hover,.warp-button:hover { border-color:#dfc69570; box-shadow:0 0 24px #c6ae7910; }
+.icon-button:active,.tour-button:active,.reset-button:active { transform:translateY(1px); }
+.atlas-footer { opacity:.78; }
+body[data-view="globe"] .event-title { text-shadow:0 2px 28px #030a15; }
+@media(min-width:701px) {
+ .hero-heading { max-width:390px; }
+ .hero-heading h1 { font-size:clamp(30px,2.5vw,41px); letter-spacing:1.5px; }
+}
+@media(max-width:700px) {
+ .brand-cn,.brand-divider { display:none; }
+ .header-actions .sound-button { width:40px; min-width:40px; }
+}
+@media(max-height:480px) and (min-width:540px) {
+ .header-actions .sound-button { width:36px; min-width:36px; }
+}
+@media(max-height:480px) and (max-width:620px) and (min-width:540px) {
+ .header-actions .sound-button { width:33px; min-width:33px; }
+}
+@media(prefers-reduced-motion:no-preference) {
+ .hero-heading { animation:atlas-arrive .9s .1s both; }
+ .globe-controls,.galaxy-controls,.map-controls { animation:atlas-arrive .8s .2s both; }
+ .view-switch a,.icon-button,.tour-button,.warp-button { transition:color .2s,background .2s,border-color .2s,box-shadow .2s,transform .2s; }
+ @keyframes atlas-arrive { from {opacity:0;transform:translateY(7px)} to {opacity:1;transform:translateY(0)} }
+}

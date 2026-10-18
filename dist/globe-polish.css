@@ -1,0 +1,134 @@
+/* A smaller exploration dock keeps the planet in the foreground. */
+body[data-view="globe"] .city-card {
+  left: var(--ui-gutter); bottom: 82px; width: 254px; padding: 18px 20px;
+  background: linear-gradient(145deg,rgba(8,25,33,.75),rgba(8,25,33,.48));
+}
+body[data-view="globe"] .city-card-code { font-size: 8px; color: #8ba6a8; letter-spacing: 1px; }
+body[data-view="globe"] .city-heading { margin-top: 13px; gap: 8px; }
+body[data-view="globe"] .city-heading h2 { font-size: 27px; font-weight: 500; min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+body[data-view="globe"] .region-tag { font-size: 10px; padding: 4px 6px; }
+body[data-view="globe"] .city-english { margin: 6px 0 14px; font-size: 10px; letter-spacing: 2px; }
+body[data-view="globe"] .city-position { padding-top: 12px; font-size: 10px; letter-spacing: .2px; color: #c0d1ca; }
+body[data-view="globe"] .city-card-hint { margin-top: 8px; font-size: 10px; color: #8ea7aa; }
+body[data-view="globe"] .globe-controls { right: var(--ui-gutter); bottom: 82px; width: 248px; padding: 14px; z-index: 9; }
+body[data-view="globe"] .control-topline { display: none; }
+body[data-view="globe"] .mode-switch { padding: 4px; border-radius: 9px; }
+body[data-view="globe"] .mode-switch button { min-height: 34px; border-radius: 6px; font-size: 11px; gap: 6px; }
+body[data-view="globe"] .mode-switch button[aria-pressed="true"] { color: #e0f3ea; }
+body[data-view="globe"] .search-wrap { margin-top: 10px; z-index: 3; }
+body[data-view="globe"] .search-field { height: 42px; }
+body[data-view="globe"] .search-key { display: none; }
+body[data-view="globe"] .search-results { position: absolute; bottom: calc(100% + 9px); left: 0; right: 0; margin: 0; max-height: min(280px,calc(100dvh - 390px)); }
+body[data-view="globe"] .search-results small { color: #91abad; }
+body[data-view="globe"] .explore-actions { gap: 8px; margin-top: 10px; }
+body[data-view="globe"] .tour-button { letter-spacing: .1px; }
+body[data-view="globe"] .reset-button { min-height: 42px; color: #b1c9c7; }
+body[data-view="globe"] .controls-expander {
+  display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 0 10px;
+  height: 34px; border: 1px solid transparent; border-radius: 8px; cursor: pointer;
+  background: rgba(157,233,218,.035); color: #a8c2be; font-size: 11px;
+}
+body[data-view="globe"] .controls-expander > svg { width: 14px; height: 14px; }
+body[data-view="globe"] .controls-expander > span { flex: 1; text-align: left; }
+body[data-view="globe"] .controls-expander .expand-chevron { margin-left: auto; transition: transform .2s; }
+body[data-view="globe"] .controls-expander:hover { color: #e0f3ea; background: rgba(157,233,218,.08); }
+body[data-view="globe"] .controls-expand:focus-visible ~ .controls-expander { outline: 2px solid var(--ui-accent); outline-offset: 3px; }
+body[data-view="globe"] .controls-expand:checked ~ .controls-expander { color: var(--ui-accent); border-color: rgba(157,233,218,.22); }
+body[data-view="globe"] .controls-expand:checked ~ .controls-expander .expand-chevron { transform: rotate(180deg); }
+body[data-view="globe"] .control-body {
+  display: none; position: absolute; right: calc(100% + 14px); bottom: 0; width: 232px; padding: 15px;
+  border: 1px solid rgba(157,233,218,.18); border-radius: 13px; background: rgba(8,25,33,.96);
+  box-shadow: 0 16px 46px rgba(0,0,0,.22); backdrop-filter: blur(22px);
+  max-height: calc(100dvh - 205px); overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: rgba(157,233,218,.24) transparent;
+}
+body[data-view="globe"] .controls-expand:checked ~ .control-body { display: block; }
+body[data-view="globe"] .settings-heading { font-size: 11px; color: #c0d3cd; margin: 0 0 8px; }
+body[data-view="globe"] .settings-heading > span:last-child { color: #8ba6a8; font-size: 8px; }
+body[data-view="globe"] .layer-option { height: 37px; min-height: 37px; }
+body[data-view="globe"] .layer-option svg { color: #91b8b7; }
+body[data-view="globe"] .range-heading { margin-top: 12px; padding-top: 12px; }
+body[data-view="globe"] .range-row { height: 28px; margin-top: 8px; }
+body[data-view="globe"] .range-row input::-webkit-slider-thumb { width: 11px; height: 11px; }
+body[data-view="globe"] .range-row input::-moz-range-thumb { width: 11px; height: 11px; }
+body[data-view="globe"] .help-panel { right: var(--ui-gutter); top: 91px; z-index: 20; max-height: calc(100dvh - 160px); overflow-y: auto; }
+body[data-view="globe"] .help-kicker { color: #a2baba; font-size: 9px; }
+body[data-view="globe"] .panel-note,body[data-view="globe"] .mouse-guide { color: #abc0bc; font-size: 11px; }
+body[data-view="globe"] .gesture-guide b { font-size: 12px; }
+body[data-view="globe"] .gesture-guide small { font-size: 10px; color: #9db7b4; }
+body[data-view="globe"] .privacy-note { font-size: 10px; color: #94aeac; }
+body[data-view="globe"] .camera-preview { right: var(--ui-gutter); }
+body[data-view="globe"] .demo-progress { bottom: 73px; }
+body[data-view="globe"] .event-title h2 { font-size: 27px; letter-spacing: 4px; }
+body[data-view="globe"] .event-title p { font-size: 10px; letter-spacing: 2px; }
+@media(max-width:1100px) {
+  body[data-view="globe"] .city-card { width: 228px; padding: 16px; }
+  body[data-view="globe"] .globe-controls { width: 234px; padding: 12px; }
+  body[data-view="globe"] .city-heading h2 { font-size: 25px; }
+  body[data-view="globe"] .region-tag { font-size: 9px; }
+}
+@media(max-width:700px) {
+  body[data-view="globe"] .city-card { width: 146px; bottom: 65px; padding: 13px 12px; }
+  body[data-view="globe"] .city-card .panel-kicker { font-size: 9px; }
+  body[data-view="globe"] .city-heading { margin-top: 10px; }
+  body[data-view="globe"] .city-heading h2 { font-size: 23px; }
+  body[data-view="globe"] .city-english { font-size: 9px; margin: 5px 0 11px; letter-spacing: 1px; max-width: 120px; }
+  body[data-view="globe"] .city-position { font-size: 8px; gap: 4px; letter-spacing: 0; padding-top: 10px; }
+  body[data-view="globe"] .city-position svg { display: none; }
+  body[data-view="globe"] .globe-controls { width: 180px; bottom: 65px; padding: 10px; border: 1px solid rgba(157,233,218,.16); border-radius: 13px; background: rgba(8,25,33,.75); backdrop-filter: blur(20px); }
+  body[data-view="globe"] .mode-switch { background: rgba(2,13,20,.2); backdrop-filter: none; padding: 3px; }
+  body[data-view="globe"] .mode-switch button { min-height: 35px; font-size: 9px; gap: 4px; }
+  body[data-view="globe"] .mode-switch svg { width: 12px; height: 12px; }
+  body[data-view="globe"] .search-wrap,body[data-view="globe"] .explore-actions,body[data-view="globe"] .controls-expander { margin-top: 8px; }
+  body[data-view="globe"] .search-field { padding: 0 9px; gap: 6px; }
+  body[data-view="globe"] .search-field input { font-size: 11px; }
+  body[data-view="globe"] .tour-button { padding: 0 8px; font-size: 11px; gap: 5px; }
+  body[data-view="globe"] .tour-arrow { display: none; }
+  body[data-view="globe"] .reset-button { min-width: 34px; width: 34px; }
+  body[data-view="globe"] .controls-expander { height: 34px; padding: 0 8px; gap: 6px; font-size: 10px; }
+  body[data-view="globe"] .control-body { right: 0; bottom: calc(100% + 10px); width: 220px; padding: 13px; max-height: min(240px,calc(100dvh - 490px)); }
+  body[data-view="globe"] .search-results { max-height: min(220px,calc(100dvh - 475px)); width: 220px; left: auto; right: 0; }
+  body[data-view="globe"] .layer-option { height: 38px; min-height: 38px; }
+  body[data-view="globe"] .help-panel { top: 226px; left: var(--ui-gutter); right: var(--ui-gutter); max-width: 320px; max-height: calc(100dvh - 306px); }
+  body[data-view="globe"] .camera-preview { top: 226px; width: 140px; height: 105px; }
+  body[data-view="globe"] .demo-progress { bottom: 50px; }
+  body[data-view="globe"] .demo-progress p { font-size: 8px; }
+  body[data-view="globe"] .demo-progress button { font-size: 9px; }
+  body[data-view="globe"] .event-title { bottom: 35%; }
+  body[data-view="globe"] .event-title h2 { font-size: 22px; }
+  body[data-view="globe"] .coordinate-readout { font-size: 8px; }
+}
+@media(max-width:380px) {
+  body[data-view="globe"] .city-card { width: 136px; padding: 12px 11px; }
+  body[data-view="globe"] .globe-controls { width: 164px; padding: 9px; }
+  body[data-view="globe"] .mode-switch svg { display: none; }
+  body[data-view="globe"] .mode-switch button { font-size: 10px; }
+  body[data-view="globe"] .search-field input { font-size: 10px; }
+  body[data-view="globe"] .explore-actions { gap: 6px; }
+  body[data-view="globe"] .tour-button { font-size: 10px; }
+}
+@media(max-height:480px) {
+  body[data-view="globe"] .city-card { bottom: 49px; width: 200px; padding: 12px 14px; }
+  body[data-view="globe"] .city-heading { margin-top: 8px; flex-direction: row; align-items: center; }
+  body[data-view="globe"] .city-heading h2 { font-size: 22px; }
+  body[data-view="globe"] .city-english { margin: 5px 0 8px; font-size: 9px; }
+  body[data-view="globe"] .city-position { padding-top: 8px; font-size: 9px; }
+  body[data-view="globe"] .city-card-hint { display: none; }
+  body[data-view="globe"] .globe-controls { bottom: 49px; width: 220px; padding: 10px; }
+  body[data-view="globe"] .mode-switch button { min-height: 30px; font-size: 10px; }
+  body[data-view="globe"] .search-field { height: 36px; min-height: 36px; }
+  body[data-view="globe"] .search-wrap,body[data-view="globe"] .explore-actions,body[data-view="globe"] .controls-expander { margin-top: 7px; }
+  body[data-view="globe"] .tour-button,body[data-view="globe"] .reset-button { min-height: 36px; }
+  body[data-view="globe"] .controls-expander { height: 30px; }
+  body[data-view="globe"] .control-body { right: calc(100% + 12px); bottom: 0; width: 210px; max-height: calc(100dvh - 198px); }
+  body[data-view="globe"] .search-results { max-height: calc(100dvh - 272px); }
+  body[data-view="globe"] .help-panel { top: 71px; left: auto; max-width: 294px; max-height: calc(100dvh - 121px); }
+  body[data-view="globe"] .camera-preview { top: 71px; width: 120px; height: 90px; }
+  body[data-view="globe"] .demo-progress { bottom: 34px; width: 200px; }
+  body[data-view="globe"] .demo-progress p { font-size: 8px; margin-top: 5px; }
+  body[data-view="globe"] .coordinate-readout { font-size: 9px; }
+}
+@media(max-height:480px) and (max-width:700px) {
+  body[data-view="globe"] .city-card { width: 180px; }
+  body[data-view="globe"] .control-body { width: 190px; }
+}

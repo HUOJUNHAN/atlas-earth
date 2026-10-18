@@ -1,0 +1,1504 @@
+{
+  "scope": "193 UN member states + Holy See and State of Palestine; related capitals/administrative centers distinguished by role",
+  "scopeZh": "联合国193个会员国及2个观察员国（教廷、巴勒斯坦）；首都和相关政府中心按角色区分。",
+  "checkedAt": "2026-10-15",
+  "countryCount": 195,
+  "capitalCenterCount": 205,
+  "totalCityCount": 558,
+  "sources": [
+    "https://www.un.org/en/about-us/member-states",
+    "https://www.un.org/en/about-us/non-member-states",
+    "https://download.geonames.org/export/dump/cities500.zip",
+    "https://www.geonames.org/about.html",
+    "https://creativecommons.org/licenses/by/4.0/",
+    "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson",
+    "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_populated_places.geojson",
+    "https://www.guineaecuatorialpress.com/index.php/noticias/el_presidente_de_la_republica_proclama_la_ciudad_de_la_paz_como_capital_de_la_republica_de_guinea_ecuatorial_con_la_firma_de_un_decreto_ley",
+    "https://www.diplomatie.gouv.ga/9-actualites/2891-diplomatie-ciudad-de-la-paz-nouvelle-capitale-de-la-guinee-equatoriale/",
+    "https://tourisme.gov.bi/en/monuments-and-museums/",
+    "https://tourisme.gov.bi/en/cultural-tourism/",
+    "https://botswanatourism.co.bw/explore/greater-gaborone",
+    "https://www.travelbelize.org/fr/destinations/belmopan/",
+    "https://benintourisme.bj/en/cities/porto-novo/",
+    "https://benintourisme.bj/destinations/la-grande-mosquee-de-porto-novo/",
+    "https://web.tourisme.gouv.ci/index.php/actualite/291",
+    "https://www.mairieyamoussoukro.ci/yamoussoukro/tourisme",
+    "https://www.malawitourism.com/regions/central-malawi/lilongwe/",
+    "https://visitrwanda.com/meet-in-rwanda/kigali/",
+    "https://fespaco.bf/",
+    "https://staging.unhabitat.org/downloads/docs/StreetPatterns.pdf",
+    "https://www.banjulcity.gm/",
+    "https://presidence.gov.gn/presentation/",
+    "https://cnt.gov.gn/archive.assemblee/www.assemblee.gov.gn/kaloum.html",
+    "https://visitghana.com/wp-content/uploads/2023/04/Ghana-MICE-Guide-4.pdf",
+    "https://kws.go.ke/park/nairobi-national-park/",
+    "https://statehouse.gov.sc/news/7034/president-herminie-unveils-restored-victoria-clock-tower-in-50th-independence-anniversary-ceremony",
+    "https://admin.seychelles.com/sites/default/files/2024-02/Map%20of%20Mahe.pdf",
+    "https://www.mot.gov.zm/?p=4046",
+    "https://dodoma.go.tz/storage/app/media/uploaded-files/Tourism_Development_Strategy_for_Dodoma_Region_3-Aug-2025__.pdf",
+    "https://www.gov.ls/about-lesotho/tourism/",
+    "https://tourism.gov.dm/images/documents/tourism_master_plan/tourism_master_plan_june2013.pdf",
+    "https://stlucia.org/en/places-to-visit/castries/",
+    "https://www.puregrenada.com/faqs/?v=0b3b97fa6688",
+    "https://visittrinidad.tt/things-to-do/sites-attractions/queens-park-savannah/",
+    "https://whc.unesco.org/en/list/1550/",
+    "https://whc.unesco.org/en/list/940/",
+    "https://whc.unesco.org/en/list/1227/",
+    "https://fsmemb.or.jp/wp-content/uploads/2025/02/FSM_guide_E_expo_2025-0206_S.pdf",
+    "https://tourism.gov.tv/funafuti-marine-conservation-2/",
+    "https://kiribatitourism.gov.ki/",
+    "https://ministryofhrctd.pw/wp-content/uploads/2025/06/Palau-Sustainable-Tourism-Strategy-2025-2028-2.pdf",
+    "https://www.fiji.travel/places-to-go/suva/locations/suva-the-heartbeat-of-the-pacific",
+    "https://www.fiji.travel/places-to-go/suva-and-surrounds/locations/top-things-to-do-in-suva",
+    "https://www.samoa.travel/discover/the-islands-of-samoa/upolu-island/apia/",
+    "https://www.visitsolomons.com.sb/about-the-solomon/provinces/",
+    "https://tongatourism.travel/wp-content/uploads/2022/09/Tongatapu-Heritage-Sites.pdf",
+    "https://www.tongatourism.travel/see-and-do/talamahu-market",
+    "https://thimphu.gov.bt/tashichho-dzong/",
+    "https://www.bruneitourism.com/places/kampong-ayer/",
+    "https://www.kotte.mc.gov.lk/index.php?Itemid=175&id=25&lang=en&option=com_content&view=article",
+    "https://touristboard.wp.gov.lk/destination.php?destid=124",
+    "https://mfa.gov.tm/en/140-years",
+    "https://uzbekistan.tmembassy.gov.tm/en/news/51118",
+    "https://www.rmiports.com/",
+    "https://www.nauru.gov.nr/about-naoero.aspx",
+    "https://www.nauruair.com/services/contact"
+  ],
+  "entries": [
+    {
+      "countryCode": "AND",
+      "country": "安道尔",
+      "cityId": "capital-and-andorra-la-vella",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ARE",
+      "country": "阿拉伯联合酋长国",
+      "cityId": "capital-are-abu-dhabi",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "AFG",
+      "country": "阿富汗",
+      "cityId": "capital-afg-kabul",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ATG",
+      "country": "安提瓜和巴布达",
+      "cityId": "capital-atg-saint-johns",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ALB",
+      "country": "阿尔巴尼亚",
+      "cityId": "capital-alb-tirana",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ARM",
+      "country": "亚美尼亚",
+      "cityId": "capital-arm-yerevan",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "AGO",
+      "country": "安哥拉",
+      "cityId": "capital-ago-luanda",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ARG",
+      "country": "阿根廷",
+      "cityId": "city-055",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "AUT",
+      "country": "奥地利",
+      "cityId": "city-032",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "AUS",
+      "country": "澳大利亚",
+      "cityId": "capital-aus-canberra",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "AZE",
+      "country": "阿塞拜疆",
+      "cityId": "capital-aze-baku",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BIH",
+      "country": "波斯尼亚和黑塞哥维那",
+      "cityId": "capital-bih-sarajevo",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BRB",
+      "country": "巴巴多斯",
+      "cityId": "capital-brb-bridgetown",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BGD",
+      "country": "孟加拉国",
+      "cityId": "city-015",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BEL",
+      "country": "比利时",
+      "cityId": "capital-bel-brussels",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BFA",
+      "country": "布基纳法索",
+      "cityId": "capital-bfa-ouagadougou",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BGR",
+      "country": "保加利亚",
+      "cityId": "capital-bgr-sofia",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BHR",
+      "country": "巴林",
+      "cityId": "capital-bhr-manama",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BDI",
+      "country": "布隆迪",
+      "cityId": "capital-bdi-gitega",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BEN",
+      "country": "贝宁",
+      "cityId": "capital-ben-porto-novo",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BEN",
+      "country": "贝宁",
+      "cityId": "capital-ben-cotonou",
+      "role": "政府驻地",
+      "primary": false
+    },
+    {
+      "countryCode": "BRN",
+      "country": "文莱",
+      "cityId": "capital-brn-bandar-seri-begawan",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BOL",
+      "country": "玻利维亚",
+      "cityId": "capital-bol-sucre",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BOL",
+      "country": "玻利维亚",
+      "cityId": "capital-bol-la-paz",
+      "role": "政府驻地",
+      "primary": false
+    },
+    {
+      "countryCode": "BRA",
+      "country": "巴西",
+      "cityId": "capital-bra-brasilia",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BHS",
+      "country": "巴哈马",
+      "cityId": "capital-bhs-nassau",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BTN",
+      "country": "不丹",
+      "cityId": "capital-btn-thimphu",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BWA",
+      "country": "博茨瓦纳",
+      "cityId": "capital-bwa-gaborone",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BLR",
+      "country": "白俄罗斯",
+      "cityId": "capital-blr-minsk",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "BLZ",
+      "country": "伯利兹",
+      "cityId": "capital-blz-belmopan",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CAN",
+      "country": "加拿大",
+      "cityId": "capital-can-ottawa",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "COD",
+      "country": "刚果民主共和国",
+      "cityId": "capital-cod-kinshasa",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CAF",
+      "country": "中非共和国",
+      "cityId": "capital-caf-bangui",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "COG",
+      "country": "刚果共和国",
+      "cityId": "capital-cog-brazzaville",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CHE",
+      "country": "瑞士",
+      "cityId": "capital-che-bern",
+      "role": "联邦城 · 政府所在地",
+      "primary": true
+    },
+    {
+      "countryCode": "CIV",
+      "country": "科特迪瓦",
+      "cityId": "capital-civ-yamoussoukro",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CIV",
+      "country": "科特迪瓦",
+      "cityId": "capital-civ-abidjan",
+      "role": "重要行政与经济中心",
+      "primary": false
+    },
+    {
+      "countryCode": "CHL",
+      "country": "智利",
+      "cityId": "city-058",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CMR",
+      "country": "喀麦隆",
+      "cityId": "capital-cmr-yaounde",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CHN",
+      "country": "中国",
+      "cityId": "city-001",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "COL",
+      "country": "哥伦比亚",
+      "cityId": "city-057",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CRI",
+      "country": "哥斯达黎加",
+      "cityId": "capital-cri-san-jose",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CUB",
+      "country": "古巴",
+      "cityId": "capital-cub-havana",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CPV",
+      "country": "佛得角",
+      "cityId": "capital-cpv-praia",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CYP",
+      "country": "塞浦路斯",
+      "cityId": "capital-cyp-nicosia",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "CZE",
+      "country": "捷克",
+      "cityId": "capital-cze-prague",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "DEU",
+      "country": "德国",
+      "cityId": "city-026",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "DJI",
+      "country": "吉布提",
+      "cityId": "capital-dji-djibouti",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "DNK",
+      "country": "丹麦",
+      "cityId": "capital-dnk-copenhagen",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "DMA",
+      "country": "多米尼克",
+      "cityId": "capital-dma-roseau",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "DOM",
+      "country": "多米尼加",
+      "cityId": "capital-dom-santo-domingo",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "DZA",
+      "country": "阿尔及利亚",
+      "cityId": "capital-dza-algiers",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ECU",
+      "country": "厄瓜多尔",
+      "cityId": "capital-ecu-quito",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "EST",
+      "country": "爱沙尼亚",
+      "cityId": "capital-est-tallinn",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "EGY",
+      "country": "埃及",
+      "cityId": "city-037",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ERI",
+      "country": "厄立特里亚",
+      "cityId": "capital-eri-asmara",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ESP",
+      "country": "西班牙",
+      "cityId": "city-030",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ETH",
+      "country": "埃塞俄比亚",
+      "cityId": "city-043",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "FIN",
+      "country": "芬兰",
+      "cityId": "capital-fin-helsinki",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "FJI",
+      "country": "斐济",
+      "cityId": "capital-fji-suva",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "FSM",
+      "country": "密克罗尼西亚联邦",
+      "cityId": "capital-fsm-palikir",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "FRA",
+      "country": "法国",
+      "cityId": "city-025",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GAB",
+      "country": "加蓬",
+      "cityId": "capital-gab-libreville",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GBR",
+      "country": "英国",
+      "cityId": "city-024",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GRD",
+      "country": "格林纳达",
+      "cityId": "capital-grd-saint-george-s",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GEO",
+      "country": "格鲁吉亚",
+      "cityId": "capital-geo-tbilisi",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GHA",
+      "country": "加纳",
+      "cityId": "capital-gha-accra",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GMB",
+      "country": "冈比亚",
+      "cityId": "capital-gmb-banjul",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GIN",
+      "country": "几内亚",
+      "cityId": "capital-gin-conakry",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GNQ",
+      "country": "赤道几内亚",
+      "cityId": "capital-gnq-ciudad-de-la-paz",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GRC",
+      "country": "希腊",
+      "cityId": "city-036",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GTM",
+      "country": "危地马拉",
+      "cityId": "capital-gtm-guatemala-city",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GNB",
+      "country": "几内亚比绍",
+      "cityId": "capital-gnb-bissau",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "GUY",
+      "country": "圭亚那",
+      "cityId": "capital-guy-georgetown",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "HND",
+      "country": "洪都拉斯",
+      "cityId": "capital-hnd-tegucigalpa",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "HRV",
+      "country": "克罗地亚",
+      "cityId": "capital-hrv-zagreb",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "HTI",
+      "country": "海地",
+      "cityId": "capital-hti-port-au-prince",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "HUN",
+      "country": "匈牙利",
+      "cityId": "capital-hun-budapest",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "IDN",
+      "country": "印度尼西亚",
+      "cityId": "city-009",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "IRL",
+      "country": "爱尔兰",
+      "cityId": "capital-irl-dublin",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ISR",
+      "country": "以色列",
+      "cityId": "capital-isr-jerusalem",
+      "role": "以色列宣布的首都（地位有争议）",
+      "primary": true
+    },
+    {
+      "countryCode": "IND",
+      "country": "印度",
+      "cityId": "city-013",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "IRQ",
+      "country": "伊拉克",
+      "cityId": "capital-irq-baghdad",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "IRN",
+      "country": "伊朗",
+      "cityId": "city-020",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ISL",
+      "country": "冰岛",
+      "cityId": "capital-isl-reykjavik",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ITA",
+      "country": "意大利",
+      "cityId": "city-029",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "JAM",
+      "country": "牙买加",
+      "cityId": "capital-jam-kingston",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "JOR",
+      "country": "约旦",
+      "cityId": "capital-jor-amman",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "JPN",
+      "country": "日本",
+      "cityId": "city-002",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KEN",
+      "country": "肯尼亚",
+      "cityId": "city-038",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KGZ",
+      "country": "吉尔吉斯斯坦",
+      "cityId": "capital-kgz-bishkek",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KHM",
+      "country": "柬埔寨",
+      "cityId": "capital-khm-phnom-penh",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KIR",
+      "country": "基里巴斯",
+      "cityId": "capital-kir-tarawa",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "COM",
+      "country": "科摩罗",
+      "cityId": "capital-com-moroni",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KNA",
+      "country": "圣基茨和尼维斯",
+      "cityId": "capital-kna-basseterre",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PRK",
+      "country": "朝鲜",
+      "cityId": "capital-prk-pyongyang",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KOR",
+      "country": "韩国",
+      "cityId": "city-003",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KWT",
+      "country": "科威特",
+      "cityId": "capital-kwt-kuwait-city",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "KAZ",
+      "country": "哈萨克斯坦",
+      "cityId": "capital-kaz-astana",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LAO",
+      "country": "老挝",
+      "cityId": "capital-lao-vientiane",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LBN",
+      "country": "黎巴嫩",
+      "cityId": "capital-lbn-beirut",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LCA",
+      "country": "圣卢西亚",
+      "cityId": "capital-lca-castries",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LIE",
+      "country": "列支敦士登",
+      "cityId": "capital-lie-vaduz",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LKA",
+      "country": "斯里兰卡",
+      "cityId": "capital-lka-sri-jayewardenepura-kotte",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LKA",
+      "country": "斯里兰卡",
+      "cityId": "capital-lka-colombo",
+      "role": "商业及重要行政中心",
+      "primary": false
+    },
+    {
+      "countryCode": "LBR",
+      "country": "利比里亚",
+      "cityId": "capital-lbr-monrovia",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LSO",
+      "country": "莱索托",
+      "cityId": "capital-lso-maseru",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LTU",
+      "country": "立陶宛",
+      "cityId": "capital-ltu-vilnius",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LUX",
+      "country": "卢森堡",
+      "cityId": "capital-lux-luxembourg",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LVA",
+      "country": "拉脱维亚",
+      "cityId": "capital-lva-riga",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "LBY",
+      "country": "利比亚",
+      "cityId": "capital-lby-tripoli",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MAR",
+      "country": "摩洛哥",
+      "cityId": "capital-mar-rabat",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MCO",
+      "country": "摩纳哥",
+      "cityId": "capital-mco-monaco",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MDA",
+      "country": "摩尔多瓦",
+      "cityId": "capital-mda-chisinau",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MNE",
+      "country": "黑山",
+      "cityId": "capital-mne-podgorica",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MDG",
+      "country": "马达加斯加",
+      "cityId": "capital-mdg-antananarivo",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MHL",
+      "country": "马绍尔群岛",
+      "cityId": "capital-mhl-majuro",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MKD",
+      "country": "北马其顿",
+      "cityId": "capital-mkd-skopje",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MLI",
+      "country": "马里",
+      "cityId": "capital-mli-bamako",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MMR",
+      "country": "缅甸",
+      "cityId": "capital-mmr-nay-pyi-taw",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MNG",
+      "country": "蒙古",
+      "cityId": "capital-mng-ulan-bator",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MRT",
+      "country": "毛里塔尼亚",
+      "cityId": "capital-mrt-nouakchott",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MLT",
+      "country": "马耳他",
+      "cityId": "capital-mlt-valletta",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MUS",
+      "country": "毛里求斯",
+      "cityId": "capital-mus-port-louis",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MDV",
+      "country": "马尔代夫",
+      "cityId": "capital-mdv-male",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MWI",
+      "country": "马拉维",
+      "cityId": "capital-mwi-lilongwe",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MEX",
+      "country": "墨西哥",
+      "cityId": "city-052",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MYS",
+      "country": "马来西亚",
+      "cityId": "city-008",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "MYS",
+      "country": "马来西亚",
+      "cityId": "capital-mys-putrajaya",
+      "role": "联邦政府行政中心",
+      "primary": false
+    },
+    {
+      "countryCode": "MOZ",
+      "country": "莫桑比克",
+      "cityId": "capital-moz-maputo",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NAM",
+      "country": "纳米比亚",
+      "cityId": "capital-nam-windhoek",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NER",
+      "country": "尼日尔",
+      "cityId": "capital-ner-niamey",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NGA",
+      "country": "尼日利亚",
+      "cityId": "capital-nga-abuja",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NIC",
+      "country": "尼加拉瓜",
+      "cityId": "capital-nic-managua",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NLD",
+      "country": "荷兰",
+      "cityId": "city-028",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NLD",
+      "country": "荷兰",
+      "cityId": "capital-nld-the-hague",
+      "role": "政府驻地",
+      "primary": false
+    },
+    {
+      "countryCode": "NOR",
+      "country": "挪威",
+      "cityId": "city-035",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NPL",
+      "country": "尼泊尔",
+      "cityId": "capital-npl-kathmandu",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "NRU",
+      "country": "瑙鲁",
+      "cityId": "capital-nru-yaren",
+      "role": "政府所在地（无正式首都）",
+      "primary": true
+    },
+    {
+      "countryCode": "NZL",
+      "country": "新西兰",
+      "cityId": "capital-nzl-wellington",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "OMN",
+      "country": "阿曼",
+      "cityId": "capital-omn-muscat",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PAN",
+      "country": "巴拿马",
+      "cityId": "capital-pan-panama-city",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PER",
+      "country": "秘鲁",
+      "cityId": "city-056",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PNG",
+      "country": "巴布亚新几内亚",
+      "cityId": "capital-png-port-moresby",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PHL",
+      "country": "菲律宾",
+      "cityId": "city-010",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PAK",
+      "country": "巴基斯坦",
+      "cityId": "capital-pak-islamabad",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "POL",
+      "country": "波兰",
+      "cityId": "capital-pol-warsaw",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PSE",
+      "country": "巴勒斯坦",
+      "cityId": "capital-pse-east-jerusalem",
+      "role": "巴勒斯坦主张的首都（地位有争议）",
+      "primary": true
+    },
+    {
+      "countryCode": "PSE",
+      "country": "巴勒斯坦",
+      "cityId": "capital-pse-ramallah",
+      "role": "实际行政中心",
+      "primary": false
+    },
+    {
+      "countryCode": "PRT",
+      "country": "葡萄牙",
+      "cityId": "capital-prt-lisbon",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PLW",
+      "country": "帕劳",
+      "cityId": "capital-plw-ngerulmud",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "PRY",
+      "country": "巴拉圭",
+      "cityId": "capital-pry-asuncion",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "QAT",
+      "country": "卡塔尔",
+      "cityId": "city-018",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ROU",
+      "country": "罗马尼亚",
+      "cityId": "capital-rou-bucharest",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SRB",
+      "country": "塞尔维亚",
+      "cityId": "capital-srb-belgrade",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "RUS",
+      "country": "俄罗斯",
+      "cityId": "city-022",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "RWA",
+      "country": "卢旺达",
+      "cityId": "capital-rwa-kigali",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SAU",
+      "country": "沙特阿拉伯",
+      "cityId": "city-019",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SLB",
+      "country": "所罗门群岛",
+      "cityId": "capital-slb-honiara",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SYC",
+      "country": "塞舌尔",
+      "cityId": "capital-syc-victoria",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SDN",
+      "country": "苏丹",
+      "cityId": "capital-sdn-khartoum",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SWE",
+      "country": "瑞典",
+      "cityId": "city-034",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SGP",
+      "country": "新加坡",
+      "cityId": "city-006",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SVN",
+      "country": "斯洛文尼亚",
+      "cityId": "capital-svn-ljubljana",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SVK",
+      "country": "斯洛伐克",
+      "cityId": "capital-svk-bratislava",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SLE",
+      "country": "塞拉利昂",
+      "cityId": "capital-sle-freetown",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SMR",
+      "country": "圣马力诺",
+      "cityId": "capital-smr-san-marino",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SEN",
+      "country": "塞内加尔",
+      "cityId": "capital-sen-dakar",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SOM",
+      "country": "索马里",
+      "cityId": "capital-som-mogadishu",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SUR",
+      "country": "苏里南",
+      "cityId": "capital-sur-paramaribo",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SSD",
+      "country": "南苏丹",
+      "cityId": "capital-ssd-juba",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "STP",
+      "country": "圣多美和普林西比",
+      "cityId": "capital-stp-sao-tome",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SLV",
+      "country": "萨尔瓦多",
+      "cityId": "capital-slv-san-salvador",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SYR",
+      "country": "叙利亚",
+      "cityId": "capital-syr-damascus",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SWZ",
+      "country": "斯威士兰",
+      "cityId": "capital-swz-mbabane",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "SWZ",
+      "country": "斯威士兰",
+      "cityId": "capital-swz-lobamba",
+      "role": "王室与立法中心",
+      "primary": false
+    },
+    {
+      "countryCode": "TCD",
+      "country": "乍得",
+      "cityId": "capital-tcd-n-djamena",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TGO",
+      "country": "多哥",
+      "cityId": "capital-tgo-lome",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "THA",
+      "country": "泰国",
+      "cityId": "city-007",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TJK",
+      "country": "塔吉克斯坦",
+      "cityId": "capital-tjk-dushanbe",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TLS",
+      "country": "东帝汶",
+      "cityId": "capital-tls-dili",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TKM",
+      "country": "土库曼斯坦",
+      "cityId": "capital-tkm-ashgabat",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TUN",
+      "country": "突尼斯",
+      "cityId": "capital-tun-tunis",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TON",
+      "country": "汤加",
+      "cityId": "capital-ton-nukualofa",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TUR",
+      "country": "土耳其",
+      "cityId": "capital-tur-ankara",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TTO",
+      "country": "特立尼达和多巴哥",
+      "cityId": "capital-tto-port-of-spain",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TUV",
+      "country": "图瓦卢",
+      "cityId": "capital-tuv-funafuti",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "TZA",
+      "country": "坦桑尼亚",
+      "cityId": "capital-tza-dodoma",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "UKR",
+      "country": "乌克兰",
+      "cityId": "capital-ukr-kyiv",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "UGA",
+      "country": "乌干达",
+      "cityId": "capital-uga-kampala",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "USA",
+      "country": "美国",
+      "cityId": "city-048",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "URY",
+      "country": "乌拉圭",
+      "cityId": "capital-ury-montevideo",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "UZB",
+      "country": "乌兹别克斯坦",
+      "cityId": "capital-uzb-tashkent",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "VAT",
+      "country": "梵蒂冈",
+      "cityId": "capital-vat-vatican-city",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "VCT",
+      "country": "圣文森特和格林纳丁斯",
+      "cityId": "capital-vct-kingstown",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "VEN",
+      "country": "委内瑞拉",
+      "cityId": "capital-ven-caracas",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "VNM",
+      "country": "越南",
+      "cityId": "city-011",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "VUT",
+      "country": "瓦努阿图",
+      "cityId": "capital-vut-port-vila",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "WSM",
+      "country": "萨摩亚",
+      "cityId": "capital-wsm-apia",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "YEM",
+      "country": "也门",
+      "cityId": "capital-yem-sanaa",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ZAF",
+      "country": "南非",
+      "cityId": "capital-zaf-pretoria",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ZAF",
+      "country": "南非",
+      "cityId": "city-041",
+      "role": "立法首都",
+      "primary": false
+    },
+    {
+      "countryCode": "ZAF",
+      "country": "南非",
+      "cityId": "capital-zaf-bloemfontein",
+      "role": "司法首都",
+      "primary": false
+    },
+    {
+      "countryCode": "ZMB",
+      "country": "赞比亚",
+      "cityId": "capital-zmb-lusaka",
+      "role": "首都",
+      "primary": true
+    },
+    {
+      "countryCode": "ZWE",
+      "country": "津巴布韦",
+      "cityId": "capital-zwe-harare",
+      "role": "首都",
+      "primary": true
+    }
+  ]
+}

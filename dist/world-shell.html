@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071b21" />
+  <meta name="description" content="星图 ATLAS — 一幅可探索的世界地图。寻找城市、观察大陆轮廓，沿着城市连线重新发现世界。" />
+  <title>星图 ATLAS · 世界，在你眼前</title>
+  <link rel="stylesheet" href="./world.css" />
+  <link rel="stylesheet" href="atlas-finish.css?v=1">
+</head>
+<body>
+  <main class="atlas" aria-label="交互世界地图">
+    <canvas id="world-map" aria-label="世界地图，支持拖动、缩放和点击城市" tabindex="0"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="星图 ATLAS 首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="12.5"/><ellipse cx="16" cy="16" rx="5.5" ry="12.5"/><path d="M4 16h24M7 8.5c6 4 12 4 18 0M7 23.5c6-4 12-4 18 0"/></svg>
+        <span class="brand-name">ATLAS <span class="brand-divider"></span><span class="brand-cn">星图</span></span>
+      </a>
+      <div class="header-actions">
+        <nav class="view-switch" aria-label="地图模式">
+          <a class="view-active" href="./" aria-current="page">世界地图</a>
+          <a href="./globe.html">三维地球<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+        </nav>
+        <button id="map-camera" class="icon-button camera-button" type="button" aria-label="开启摄像头手势控制" title="开启摄像头手势控制"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3.5v5m3-7v7m3-6v7m3-4v7.2c0 3.1-2.2 5.3-5.3 5.3h-.2c-2.2 0-3.5-.9-4.8-2.6L3.2 12c-.7-.9-.4-2 .5-2.3.5-.2 1.1 0 1.5.4L7 12V3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>开启手势</span></button>
+        <button id="map-fullscreen" class="icon-button" type="button" aria-label="全屏浏览" title="全屏浏览"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg></button>
+      </div>
+    </header>
+
+    <section class="hero-heading" aria-label="地图介绍">
+      <div class="eyebrow"><span class="eyebrow-line"></span>INTERACTIVE WORLD ATLAS</div>
+      <h1>世界，在你眼前<span class="title-dot">.</span></h1>
+      <p>从城市的微光，到大陆的轮廓。<span class="hero-secondary">每一次探索，都是新的出发。</span></p>
+    </section>
+
+    <div id="map-loading" class="map-loading" role="status"><span class="loading-orbit" aria-hidden="true"></span><span>正在展开世界</span></div>
+    <div id="map-tooltip" class="map-tooltip" hidden></div><div id="map-toast" class="map-toast" role="status" aria-live="polite"></div>
+
+    <aside class="city-card glass-panel" aria-label="所选城市详情">
+      <div class="panel-kicker"><span class="selection-dot"></span>此刻，落在这里<span class="small-rule"></span></div>
+      <div class="city-heading"><h2 id="city-name">上海</h2><span id="city-region" class="region-tag">亚洲</span></div>
+      <div id="city-english" class="city-english">SHANGHAI</div>
+      <p id="city-description" class="city-description">黄浦江畔，光与建筑勾勒出东方都市的轮廓。</p>
+      <div class="city-facts">
+        <div><span class="fact-label">纬度 LAT.</span><span id="city-latitude" class="fact-value">31.23° N</span></div>
+        <div><span class="fact-label">经度 LON.</span><span id="city-longitude" class="fact-value">121.47° E</span></div>
+        <div><span class="fact-label">当地时间</span><span id="city-time" class="fact-value">--:--</span></div>
+      </div>
+    </aside>
+
+    <aside class="settings-panel glass-panel" id="settings-panel" aria-label="地图搜索和显示选项">
+      <label class="search-field" for="city-search"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg><input id="city-search" type="search" placeholder="寻找一座城市" autocomplete="off" aria-label="按中文或英文搜索城市" /></label>
+      <div id="search-results" class="search-results" role="listbox" aria-label="搜索结果" hidden></div>
+      <div class="settings-heading"><span>地图图层</span><span class="settings-heading-en">LAYERS</span></div>
+      <div class="layer-options">
+        <label class="layer-option" for="label-toggle"><span><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 4h12M9 4v11M6 15h6"/></svg>大陆与城市名称</span><input id="label-toggle" type="checkbox" checked /><i class="toggle-track" aria-hidden="true"></i></label>
+        <label class="layer-option" for="dot-toggle"><span><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="2"/><circle cx="9" cy="9" r="6"/></svg>陆地粒子</span><input id="dot-toggle" type="checkbox" checked /><i class="toggle-track" aria-hidden="true"></i></label>
+        <label class="layer-option" for="route-toggle"><span><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 13c3-11 11-11 14 0"/><circle cx="2" cy="13" r="1"/><circle cx="16" cy="13" r="1"/></svg>城市连线</span><input id="route-toggle" type="checkbox" checked /><i class="toggle-track" aria-hidden="true"></i></label>
+      </div>
+      <button id="map-tour" class="tour-button" type="button"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m7 5 6 4-6 4V5Z"/></svg><span id="tour-state">开启城市巡游</span><svg class="tour-arrow" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m5 13 8-8M5 5h8v8"/></svg></button>
+    </aside>
+
+    <div class="map-controls" role="group" aria-label="地图缩放">
+      <button id="zoom-in" type="button" aria-label="放大地图" title="放大"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M10 4v12"/></svg></button>
+      <span id="zoom-readout" class="zoom-readout">100%</span>
+      <button id="zoom-out" type="button" aria-label="缩小地图" title="缩小"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12"/></svg></button>
+      <span class="control-divider"></span>
+      <button id="map-reset" type="button" aria-label="复位世界视野" title="复位视野"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 8a6 6 0 1 1 .6 6.2M4 3v5h5"/></svg></button>
+    </div>
+
+    <nav id="continent-filters" class="continent-filters" aria-label="探索大陆">
+      <button type="button" data-region="all" class="active" aria-pressed="true">全部<span class="filter-active-dot" aria-hidden="true"></span></button>
+      <button type="button" data-region="亚洲" aria-pressed="false">亚洲</button>
+      <button type="button" data-region="欧洲" aria-pressed="false">欧洲</button>
+      <button type="button" data-region="非洲" aria-pressed="false">非洲</button>
+      <button type="button" data-region="北美洲" aria-pressed="false">北美洲</button>
+      <button type="button" data-region="南美洲" aria-pressed="false">南美洲</button>
+      <button type="button" data-region="大洋洲" aria-pressed="false">大洋洲</button>
+    </nav>
+
+    <button id="map-settings" class="mobile-settings icon-button" type="button" aria-label="展开地图选项" aria-expanded="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/><circle cx="7" cy="5" r="2"/><circle cx="13" cy="10" r="2"/><circle cx="8" cy="15" r="2"/></svg></button>
+
+    <footer class="atlas-footer">
+      <div class="footer-status"><span class="status-dot"></span><span>WORLD VIEW</span><span class="footer-separator">/</span><span><b id="country-count">—</b> 个国家与地区</span><span class="footer-desktop"><b id="node-count">—</b> 座城市</span></div>
+      <div class="interaction-hint">拖动探索<span>·</span>滚轮缩放<span>·</span>点击城市</div>
+      <div id="coordinate-readout" class="coordinate-readout">31.23° N · 121.47° E</div>
+    </footer>
+
+    <div id="camera-preview" class="camera-preview" hidden><video id="camera-video" playsinline muted></video><canvas id="hand-overlay"></canvas><div id="camera-status" class="camera-status">正在连接摄像头</div></div>
+  </main>
+  <script src="./vendor/d3.min.js"></script>
+  <script type="module" src="./world.js"></script>
+</body>
+</html>

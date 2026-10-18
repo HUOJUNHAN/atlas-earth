@@ -1,0 +1,6 @@
+* text=auto
+*.wasm binary
+*.task binary
+*.jpg binary
+*.png binary
+*.ttf binary

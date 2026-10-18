@@ -1,0 +1,179 @@
+/* National capitals add a second reading layer without enlarging the main dock. */
+body[data-view="world"] .city-card,
+body[data-view="globe"] .city-card {
+  max-height: calc(100dvh - 242px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(157,233,218,.28) transparent;
+}
+body[data-view="world"] .city-heading,
+body[data-view="globe"] .city-heading { min-width: 0; align-items: flex-start; }
+body[data-view="world"] .city-heading h2,
+body[data-view="globe"] .city-heading h2 {
+  min-width: 0; max-width: 100%; overflow-wrap: anywhere; white-space: normal;
+}
+body[data-view="world"] .region-tag,
+body[data-view="globe"] .region-tag {
+  flex: none; max-width: 43%; line-height: 1.55; white-space: normal;
+  overflow-wrap: anywhere; text-align: center;
+}
+body[data-view="world"] .city-english,
+body[data-view="globe"] .city-english {
+  position: static; max-width: 100%; white-space: normal;
+  overflow: visible; text-overflow: clip; overflow-wrap: anywhere;
+  line-height: 1.6; letter-spacing: 1.5px;
+}
+body[data-view="world"] .capital-meta,
+body[data-view="globe"] .capital-meta {
+  min-width: 0; margin: -2px 0 13px; padding: 9px 10px;
+  border-left: 2px solid rgba(224,193,123,.58); border-radius: 2px 7px 7px 2px;
+  background: linear-gradient(90deg,rgba(224,193,123,.075),rgba(224,193,123,.025));
+  color: #dfcda4; font-size: 11px; line-height: 1.7;
+  overflow-wrap: anywhere; word-break: normal;
+}
+body[data-view="world"] .capital-meta > span,
+body[data-view="globe"] .capital-meta > span { display: block; }
+body[data-view="world"] .capital-meta details,
+body[data-view="globe"] .capital-meta details { margin-top: 5px; }
+body[data-view="world"] .capital-meta summary,
+body[data-view="globe"] .capital-meta summary {
+  width: fit-content; min-height: 28px; display: flex; align-items: center; gap: 7px;
+  padding: 3px 0; list-style: none; cursor: pointer; color: #b4c7c1;
+  font-size: 10px; line-height: 1.6; border-radius: 3px;
+}
+body[data-view="world"] .capital-meta summary::-webkit-details-marker,
+body[data-view="globe"] .capital-meta summary::-webkit-details-marker { display: none; }
+body[data-view="world"] .capital-meta summary::after,
+body[data-view="globe"] .capital-meta summary::after {
+  content: '+'; color: #ddc893; font-family: Manrope,sans-serif; font-size: 14px;
+}
+body[data-view="world"] .capital-meta details[open] summary::after,
+body[data-view="globe"] .capital-meta details[open] summary::after { content: '−'; }
+body[data-view="world"] .capital-meta summary:hover,
+body[data-view="globe"] .capital-meta summary:hover { color: #edf2e9; }
+body[data-view="world"] .capital-meta details p,
+body[data-view="globe"] .capital-meta details p {
+  margin: 4px 0 1px; padding-right: 3px; max-height: 132px; overflow-y: auto;
+  color: #aec3bc; font-size: 11px; line-height: 1.8;
+  overscroll-behavior: contain; scrollbar-width: thin;
+  scrollbar-color: rgba(224,193,123,.3) transparent;
+}
+body[data-view="world"] .capital-legend,
+body[data-view="globe"] .capital-legend {
+  display: flex; align-items: center; gap: 8px; margin: 7px 0 8px;
+  color: #c6b590; font-size: 10px; line-height: 1.7; letter-spacing: .1px;
+}
+body[data-view="world"] .capital-legend > i,
+body[data-view="globe"] .capital-legend > i {
+  width: 5px; height: 5px; flex: none; border-radius: 50%; background: #e2c485;
+  box-shadow: 0 0 7px rgba(226,196,133,.5);
+}
+body[data-view="world"] .layer-option,
+body[data-view="globe"] .layer-option { gap: 9px; height: auto; min-height: 36px; padding: 4px 0; }
+body[data-view="world"] .layer-option > span,
+body[data-view="globe"] .layer-option > span { min-width: 0; line-height: 1.6; }
+body[data-view="world"] .layer-option .toggle-track,
+body[data-view="globe"] .layer-option .toggle-track { flex: none; }
+body[data-view="world"] .search-results button,
+body[data-view="globe"] .search-results button {
+  gap: 10px; align-items: flex-start; line-height: 1.6; overflow-wrap: anywhere;
+}
+body[data-view="world"] .search-results button > span,
+body[data-view="globe"] .search-results button > span { min-width: 0; flex: 1; }
+body[data-view="world"] .search-results small,
+body[data-view="globe"] .search-results small {
+  max-width: 47%; flex: none; white-space: normal; overflow: visible;
+  text-overflow: clip; overflow-wrap: anywhere; text-align: right; line-height: 1.6;
+}
+body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls {
+  bottom: min(472px,calc(100dvh - 235px));
+}
+
+@media (min-width:701px) and (max-width:1200px) and (min-height:701px) {
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: min(497px,calc(100dvh - 235px)); }
+}
+@media (max-width:700px) and (min-height:481px) {
+  body[data-view="world"] .city-card { max-height: calc(100dvh - 300px); }
+  body[data-view="world"] .city-english { margin-top: 3px; font-size: 9px; line-height: 1.5; }
+  body[data-view="world"] .capital-meta { margin: 0 0 10px; padding: 7px 9px; }
+  body[data-view="world"] .map-controls,
+  body[data-view="world"] .mobile-settings,
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls {
+    bottom: calc(118px + var(--world-city-card-height,200px));
+  }
+  body[data-view="world"] .settings-panel.mobile-open ~ .map-controls,
+  body[data-view="world"] .settings-panel.mobile-open ~ .mobile-settings,
+  body[data-view="world"] .settings-panel.mobile-open:has(.layer-disclosure[open]) ~ .map-controls {
+    bottom: 116px;
+  }
+  body[data-view="world"] .settings-panel { max-height: calc(100dvh - 322px); }
+  body[data-view="world"] .layer-disclosure .layer-options {
+    max-height: min(152px,calc(100dvh - 398px)); overflow-y: auto;
+  }
+  body[data-view="world"] .settings-panel .search-results {
+    max-height: min(270px,calc(100dvh - 384px));
+  }
+  body[data-view="world"] .settings-panel:has(.search-results:not([hidden])) .layer-disclosure { display: none; }
+  body[data-view="globe"] .city-card {
+    grid-template-rows: auto auto auto auto;
+    max-height: calc(100dvh - 332px); padding-bottom: 12px;
+  }
+  body[data-view="globe"] .city-heading { align-self: start; }
+  body[data-view="globe"] .city-heading h2 { line-height: 1.4; }
+  body[data-view="globe"] .city-english { font-size: 9px; letter-spacing: .8px; }
+  body[data-view="globe"] .capital-meta {
+    grid-column: 1 / -1; grid-row: 3; margin: 8px 0 0; padding: 7px 9px;
+  }
+  body[data-view="globe"] .city-position { grid-row: 4; }
+  body[data-view="globe"] .city-card:not(:has(.capital-meta:not([hidden]))) .city-position { grid-row: 3; }
+  body[data-view="globe"] .control-body {
+    bottom: min(calc(138px + var(--globe-city-card-height,180px)),calc(100dvh - 370px));
+    width: min(310px,calc(100vw - 40px));
+    max-height: max(100px,min(300px,calc(100dvh - 337px - var(--globe-city-card-height,180px))));
+  }
+  body[data-view="globe"] .search-results {
+    bottom: min(calc(85px + var(--globe-city-card-height,180px)),calc(100dvh - 380px));
+    width: min(310px,calc(100vw - 40px));
+    max-height: max(100px,min(270px,calc(100dvh - 345px - var(--globe-city-card-height,180px))));
+  }
+  body[data-view="world"] .capital-meta details p,
+  body[data-view="globe"] .capital-meta details p { max-height: 96px; }
+}
+/* On shorter phones the active picker uses the card area, keeping it below navigation. */
+@media (max-width:700px) and (min-height:481px) and (max-height:740px) {
+  body[data-view="globe"] .interface:has(#controls-expand:checked) .city-card,
+  body[data-view="globe"] .interface:has(.search-results:not([hidden])) .city-card { visibility: hidden; }
+  body[data-view="globe"] .control-body {
+    bottom: calc(100% + 12px); max-height: calc(100dvh - 322px);
+  }
+  body[data-view="globe"] .search-results {
+    bottom: calc(100% + 12px); max-height: min(300px,calc(100dvh - 285px));
+  }
+}
+@media (min-width:701px) and (min-height:481px) and (max-height:700px) {
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: auto; }
+}
+@media (max-height:480px) and (min-width:540px) {
+  body[data-view="world"] .city-card { max-height: calc(100dvh - 208px); }
+  body[data-view="globe"] .city-card { max-height: calc(100dvh - 192px); }
+  body[data-view="world"] .city-card:has(.capital-meta details[open]),
+  body[data-view="globe"] .city-card:has(.capital-meta details[open]) {
+    max-height: calc(100dvh - 136px);
+  }
+  body[data-view="world"] .atlas:has(.capital-meta details[open]) .hero-heading,
+  body[data-view="globe"] .interface:has(.capital-meta details[open]) .hero-heading { visibility: hidden; }
+  body[data-view="world"] .city-english,
+  body[data-view="globe"] .city-english { display: block; margin-top: 3px; font-size: 8px; letter-spacing: .9px; }
+  body[data-view="world"] .city-description,
+  body[data-view="globe"] .city-description { margin: 7px 0 9px; font-size: 11px; line-height: 1.7; }
+  body[data-view="world"] .capital-meta,
+  body[data-view="globe"] .capital-meta { margin: 0 0 8px; padding: 6px 8px; font-size: 10px; }
+  body[data-view="world"] .capital-meta details p,
+  body[data-view="globe"] .capital-meta details p { max-height: 72px; font-size: 10px; }
+  body[data-view="world"] .settings-panel { max-height: calc(100dvh - 148px); overflow-y: auto; }
+  body[data-view="world"] .layer-disclosure .layer-options { max-height: 108px; }
+  body[data-view="world"] .settings-panel .search-results { max-height: 115px; }
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: auto; }
+  body[data-view="globe"] .control-body { max-height: calc(100dvh - 198px); }
+}

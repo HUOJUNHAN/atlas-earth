@@ -1,0 +1,194 @@
+/* World view finishing: compact tools keep the canvas at the center of attention. */
+body[data-view="world"] .atlas { min-height: 100%; }
+body[data-view="world"] .hero-heading p { max-width: 520px; }
+body[data-view="world"] .hero-secondary { color: #8fa6a8; }
+body[data-view="world"] .city-card {
+  left: var(--ui-gutter); bottom: 96px; width: 286px; padding: 18px 20px;
+}
+body[data-view="world"] .city-card .panel-kicker { display: none; }
+body[data-view="world"] .city-heading { margin-top: 0; }
+body[data-view="world"] .city-heading h2 { font-size: 28px; letter-spacing: 1px; }
+body[data-view="world"] .region-tag { font-size: 10px; padding: 4px 8px; }
+body[data-view="world"] .city-english { color: #cfbe95; font-size: 10px; letter-spacing: 2.2px; }
+body[data-view="world"] .city-description { margin: 10px 0 12px; font-size: 12px; line-height: 1.8; color: #a3b8b7; }
+body[data-view="world"] .city-facts { grid-template-columns: 1fr 1.2fr .95fr; gap: 8px; padding-top: 12px; }
+body[data-view="world"] .fact-label { font-size: 10px; color: #8ca7ac; letter-spacing: .25px; }
+body[data-view="world"] .fact-value { font-family: Manrope, sans-serif; font-size: 11px; color: #d2dfd9; }
+body[data-view="world"] .settings-panel { right: var(--ui-gutter); bottom: 96px; width: 258px; padding: 15px; }
+body[data-view="world"] .layer-disclosure { margin-top: 10px; }
+body[data-view="world"] .layer-disclosure > summary {
+  display: flex; align-items: center; gap: 7px; min-height: 34px; margin: 0;
+  color: #bacdca; font-size: 12px; cursor: pointer; list-style: none;
+}
+body[data-view="world"] .layer-disclosure > summary::-webkit-details-marker { display: none; }
+body[data-view="world"] .layer-summary-label { margin-left: auto; color: #7f9ba0; font-size: 10px; }
+body[data-view="world"] .layer-disclosure > summary > svg { width: 15px; height: 15px; color: #a0bcb6; transition: transform .2s; }
+body[data-view="world"] .layer-disclosure[open] > summary > svg { transform: rotate(180deg); }
+body[data-view="world"] .layer-disclosure[open] .layer-options { margin-top: 5px; padding-top: 5px; border-top: 1px solid rgba(157,233,218,.10); }
+body[data-view="world"] .tour-button { margin-top: 10px; }
+body[data-view="world"] .map-controls {
+  right: var(--ui-gutter); top: auto; bottom: 286px; width: 44px; border-radius: 12px; padding: 5px 0;
+  color: #bfdbd3; background: rgba(8,25,33,.76); border-color: rgba(157,233,218,.16);
+}
+body[data-view="world"] .map-controls button { width: 42px; height: 34px; color: #b2cbc5; }
+body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: 405px; }
+body[data-view="world"] .zoom-readout { font-size: 9px; color: #91adb0; }
+body[data-view="world"] .continent-filters {
+  bottom: 96px; border-radius: 24px; gap: 2px; padding: 5px;
+  background: rgba(8,25,33,.72); border-color: rgba(157,233,218,.14);
+  box-shadow: 0 8px 30px #0002;
+}
+body[data-view="world"] .continent-filters button {
+  min-height: 34px; padding: 0 12px; border-radius: 20px; font-size: 11px; color: #a0b7b9;
+}
+body[data-view="world"] .continent-filters button.active,
+body[data-view="world"] .continent-filters button[aria-pressed="true"] {
+  padding: 0 14px; color: #ecf4ea; background: rgba(157,233,218,.15);
+  box-shadow: inset 0 0 0 1px rgba(157,233,218,.09);
+}
+body[data-view="world"] .coordinate-readout { font-family: Manrope, sans-serif; font-size: 10px; color: #95aeb1; }
+body[data-view="world"] .footer-status > span:nth-child(2) { color: #a4bbbd; font-size: 9px; }
+body[data-view="world"] .footer-status b { color: #c2d4cf; }
+body[data-view="world"] .map-tooltip { font-size: 12px; border-radius: 8px; padding: 8px 11px; }
+body[data-view="world"] .no-results { font-size: 12px; }
+
+@media(max-width:1200px) and (min-width:701px) {
+  body[data-view="world"] .city-card { width: 260px; }
+  body[data-view="world"] .settings-panel { width: 230px; }
+  body[data-view="world"] .city-card,
+  body[data-view="world"] .settings-panel { bottom: 121px; }
+  body[data-view="world"] .continent-filters { bottom: 58px; }
+  body[data-view="world"] .continent-filters button { padding: 0 10px; }
+  body[data-view="world"] .map-controls { bottom: 311px; }
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: 430px; }
+}
+@media(max-width:700px) {
+  body[data-view="world"] .hero-heading { top: 133px; }
+  body[data-view="world"] .hero-heading p { display: none; }
+  body[data-view="world"] .city-card {
+    left: var(--ui-gutter); right: var(--ui-gutter); bottom: 106px;
+    width: auto; max-width: none; padding: 13px 15px; border-radius: 13px;
+  }
+  body[data-view="world"] .city-card .panel-kicker { display: none; }
+  body[data-view="world"] .city-heading { margin-top: 0; gap: 10px; }
+  body[data-view="world"] .city-heading h2 { font-size: 24px; line-height: 1.35; }
+  body[data-view="world"] .region-tag { font-size: 9px; padding: 3px 6px; }
+  body[data-view="world"] .city-english {
+    top: 24px; right: 16px; max-width: 43%; margin: 0;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 9px; letter-spacing: 1.4px;
+  }
+  body[data-view="world"] .city-description { display: none; }
+  body[data-view="world"] .city-facts { margin-top: 10px; padding-top: 9px; gap: 10px; }
+  body[data-view="world"] .city-facts > div { gap: 4px; }
+  body[data-view="world"] .fact-label { font-size: 9px; }
+  body[data-view="world"] .fact-value { font-size: 11px; }
+  body[data-view="world"] .continent-filters {
+    left: var(--ui-gutter); right: var(--ui-gutter); bottom: 51px;
+    max-width: none; gap: 0; padding: 4px; border-radius: 24px;
+  }
+  body[data-view="world"] .continent-filters button { padding: 0 8px; min-height: 33px; font-size: 10px; }
+  body[data-view="world"] .continent-filters button.active,
+  body[data-view="world"] .continent-filters button[aria-pressed="true"] { padding: 0 11px; }
+  body[data-view="world"] .map-controls {
+    left: var(--ui-gutter); right: auto; top: auto; bottom: 228px;
+    flex-direction: row; width: auto; height: 38px; padding: 2px 4px; border-radius: 11px;
+  }
+  body[data-view="world"] .map-controls button { width: 33px; height: 32px; }
+  body[data-view="world"] .zoom-readout { font-size: 9px; padding: 0 3px; }
+  body[data-view="world"] .control-divider { width: 1px; height: 17px; margin: 0 4px; }
+  body[data-view="world"] .mobile-settings {
+    right: var(--ui-gutter); bottom: 228px; width: 38px; height: 38px;
+    border-radius: 11px; border-color: rgba(157,233,218,.16);
+  }
+  body[data-view="world"] .settings-panel {
+    right: var(--ui-gutter); left: var(--ui-gutter); bottom: 174px; width: auto;
+    max-height: calc(100dvh - 414px); padding: 13px; overflow: visible;
+  }
+  body[data-view="world"] .settings-panel.mobile-open {
+    display: grid; grid-template-columns: minmax(0,1fr) 116px; gap: 10px;
+  }
+  body[data-view="world"] .settings-panel .search-field { grid-column: 1; grid-row: 1; padding: 0 9px; gap: 6px; }
+  body[data-view="world"] .settings-panel .search-field input { font-size: 11px; }
+  body[data-view="world"] .settings-panel .tour-button { grid-column: 2; grid-row: 1; margin: 0; padding: 0 8px; gap: 5px; font-size: 10px; }
+  body[data-view="world"] .settings-panel .tour-arrow { display: none; }
+  body[data-view="world"] .layer-disclosure { grid-column: 1 / -1; grid-row: 2; margin: 0; }
+  body[data-view="world"] .layer-disclosure .layer-options { max-height: 108px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #507b73 transparent; }
+  body[data-view="world"] .settings-panel .search-results { top: 63px; left: 13px; right: 13px; max-height: 204px; }
+  body[data-view="world"] .atlas:has(.settings-panel.mobile-open) .city-card { display: none; }
+  body[data-view="world"] .settings-panel.mobile-open ~ .map-controls,
+  body[data-view="world"] .settings-panel.mobile-open ~ .mobile-settings { bottom: 116px; }
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: 228px; }
+  body[data-view="world"] .settings-panel.mobile-open:has(.layer-disclosure[open]) ~ .map-controls { bottom: 116px; }
+  body[data-view="world"] .coordinate-readout { font-size: 8px; }
+  body[data-view="world"] .footer-status { font-size: 8px; gap: 6px; }
+  body[data-view="world"] .footer-status > span:nth-child(2) { font-size: 7px; }
+}
+@media(max-width:380px) {
+  body[data-view="world"] .continent-filters button { font-size: 9px; padding: 0 6px; }
+  body[data-view="world"] .continent-filters button.active,
+  body[data-view="world"] .continent-filters button[aria-pressed="true"] { padding: 0 9px; }
+}
+@media(min-width:701px) and (min-height:481px) and (max-height:700px) {
+  body[data-view="world"] .map-controls {
+    top: 93px; bottom: auto; flex-direction: row; width: auto; height: 38px; padding: 2px 4px;
+  }
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: auto; }
+  body[data-view="world"] .map-controls button { width: 33px; height: 32px; }
+  body[data-view="world"] .zoom-readout { padding: 0 3px; }
+  body[data-view="world"] .control-divider { width: 1px; height: 17px; margin: 0 4px; }
+}
+@media(max-height:480px) {
+  body[data-view="world"] .hero-heading { top: 83px; }
+  body[data-view="world"] .city-card {
+    left: var(--ui-gutter); right: auto; bottom: 67px; width: 222px; padding: 12px 14px;
+  }
+  body[data-view="world"] .city-card .panel-kicker,
+  body[data-view="world"] .city-description { display: none; }
+  body[data-view="world"] .city-heading { margin-top: 0; }
+  body[data-view="world"] .city-heading h2 { font-size: 23px; }
+  body[data-view="world"] .city-english { position: static; margin-top: 5px; font-size: 9px; }
+  body[data-view="world"] .city-facts { margin-top: 9px; padding-top: 9px; gap: 6px; }
+  body[data-view="world"] .fact-label { font-size: 9px; }
+  body[data-view="world"] .fact-value { font-size: 10px; }
+  body[data-view="world"] .settings-panel {
+    display: block; left: auto; right: var(--ui-gutter); bottom: 67px;
+    width: 215px; padding: 12px; max-height: calc(100dvh - 148px);
+  }
+  body[data-view="world"] .settings-panel.mobile-open { display: block; }
+  body[data-view="world"] .layer-disclosure { margin-top: 7px; }
+  body[data-view="world"] .layer-disclosure .layer-options { max-height: 74px; overflow-y: auto; }
+  body[data-view="world"] .settings-panel .tour-button { margin-top: 7px; }
+  body[data-view="world"] .settings-panel .search-results { bottom: auto; top: 59px; left: 12px; right: 12px; max-height: 160px; }
+  body[data-view="world"] .map-controls {
+    left: 50%; right: auto; top: 83px; bottom: auto; transform: translateX(-50%);
+    flex-direction: row; width: auto; height: 36px; padding: 2px 4px;
+  }
+  body[data-view="world"] .settings-panel:has(.layer-disclosure[open]) ~ .map-controls { bottom: auto; }
+  body[data-view="world"] .map-controls button { width: 30px; height: 30px; }
+  body[data-view="world"] .zoom-readout { padding: 0 3px; }
+  body[data-view="world"] .control-divider { width: 1px; height: 17px; margin: 0 4px; }
+  body[data-view="world"] .continent-filters {
+    left: 50%; right: auto; bottom: 14px; width: max-content; transform: translateX(-50%); gap: 1px;
+  }
+  body[data-view="world"] .continent-filters button { font-size: 10px; padding: 0 10px; min-height: 31px; }
+  body[data-view="world"] .continent-filters button.active,
+  body[data-view="world"] .continent-filters button[aria-pressed="true"] { padding: 0 12px; }
+  body[data-view="world"] .atlas-footer,
+  body[data-view="world"] .mobile-settings { display: none; }
+  body[data-view="world"] .atlas:has(.settings-panel.mobile-open) .city-card { display: block; }
+}
+/* Short landscape phones keep both side cards out of the map until requested. */
+@media(max-width:850px) and (max-height:480px) {
+  body[data-view="world"] .city-card { bottom: 62px; padding: 12px 14px; width: 210px; }
+  body[data-view="world"] .city-heading { justify-content: flex-start; gap: 10px; }
+  body[data-view="world"] .city-english,
+  body[data-view="world"] .city-facts { display: none; }
+  body[data-view="world"] .settings-panel { display: none; }
+  body[data-view="world"] .settings-panel.mobile-open { display: block; }
+  body[data-view="world"] .mobile-settings {
+    display: flex; position: absolute; right: var(--ui-gutter); top: 83px; bottom: auto;
+    width: 38px; min-width: 38px; height: 38px; border-radius: 11px; z-index: 6;
+    background: rgba(8,25,33,.84); border-color: rgba(157,233,218,.16);
+  }
+  body[data-view="world"] .settings-panel.mobile-open ~ .mobile-settings { top: auto; bottom: 14px; }
+}

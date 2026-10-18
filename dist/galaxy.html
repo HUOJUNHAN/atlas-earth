@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070610">
+  <meta name="description" content="ATLAS 星图 — 在三维银河中自由探索，转动螺旋星海，穿越星尘与光。支持鼠标、触屏与手势。">
+  <title>ATLAS 星图 · 银河系</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='32' rx='26' ry='12' transform='rotate(-30 32 32)' fill='none' stroke='%23b4a1ff' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23ecdfb5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="galaxy.css?v=1">
+  <link rel="stylesheet" href="atlas-ui.css?v=1">
+  <link rel="stylesheet" href="galaxy-polish.css?v=1">
+  <link rel="stylesheet" href="atlas-finish.css?v=1">
+</head>
+<body data-view="galaxy">
+  <main id="galaxy-universe" aria-label="可旋转、缩放的三维银河">
+    <div id="galaxy-scene"></div>
+    <div class="vignette" aria-hidden="true"></div>
+  </main>
+  <div class="interface" id="interface">
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="ATLAS 星图 世界地图">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13"/><ellipse cx="16" cy="16" rx="6.5" ry="13"/><path d="M3 16h26M5.5 8h21M5.5 24h21"/></svg>
+        <span class="brand-name">ATLAS<span class="brand-divider"></span><span class="brand-cn">星图</span></span>
+      </a>
+      <nav class="view-switch" aria-label="探索视图">
+        <a href="./"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m2 4 5-2 6 2 5-2v14l-5 2-6-2-5 2zM7 2v14M13 4v14"/></svg>世界地图</a>
+        <a href="globe"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><ellipse cx="10" cy="10" rx="3.5" ry="7.5"/><path d="M2.5 10h15"/></svg>三维地球</a>
+        <a href="galaxy" class="view-active" aria-current="page"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><ellipse cx="10" cy="10" rx="8" ry="3.5" transform="rotate(-30 10 10)"/><circle cx="10" cy="10" r="1.5"/></svg>银河系</a>
+      </nav>
+      <nav class="header-actions" aria-label="场景工具">
+        <button id="camera-button" class="icon-button camera-button" title="开启摄像头手势控制" aria-label="开启摄像头手势控制" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6l1.5-2h5L16 6h4v13H4V6z"/><circle cx="12" cy="12" r="3.5"/></svg><span>开启手势</span></button>
+        <button id="cinema-button" class="icon-button" title="沉浸模式（H）" aria-label="开启沉浸模式" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/><path d="m10 9 5 3-5 3z"/></svg></button>
+        <button id="fullscreen-button" class="icon-button" title="全屏（F）" aria-label="全屏"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></svg></button>
+      </nav>
+    </header>
+    <section class="hero-heading" aria-label="介绍">
+      <div class="eyebrow"><span class="eyebrow-line"></span>MILKY WAY<span class="eyebrow-separator">/</span><span class="chapter-number">03</span></div>
+      <h1>每一颗星，都是远方<span class="title-dot">。</span></h1>
+      <p>循着光，驶向无垠星海。</p>
+    </section>
+    <aside class="chapter-card" aria-label="当前观察视角">
+      <div class="panel-kicker"><span class="selection-dot"></span>此刻的星海<span class="small-rule"></span><span class="chapter-code">GALAXY / 03</span></div>
+      <h2 id="chapter-name">银河全景</h2>
+      <p id="chapter-description">转动视角，看星光沿旋臂缓缓流动。</p>
+      <div class="chapter-line" aria-hidden="true"><span></span><i></i><i></i></div>
+    </aside>
+    <aside class="glass-panel galaxy-controls" aria-label="银河探索工具">
+      <input id="controls-expand" class="controls-expand" type="checkbox" aria-label="展开银河探索工具">
+      <div class="control-topline"><span>宇宙探索</span><span class="control-topline-en">EXPLORE</span></div>
+      <div class="preset-switch" role="group" aria-label="银河观察视角">
+        <button id="view-overview" aria-pressed="true" title="银河全景"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><ellipse cx="10" cy="10" rx="7.5" ry="3" transform="rotate(-25 10 10)"/><circle cx="10" cy="10" r="1"/></svg><span>全景</span></button>
+        <button id="view-top" aria-pressed="false" title="俯瞰旋臂"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="M10 5c-3 0-5 4-2 6 2 2 5 0 4-2-.5-1-2-1-2 0"/></svg><span>俯瞰</span></button>
+        <button id="view-close" aria-pressed="false" title="靠近星核"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 2 1.8 6.2L18 10l-6.2 1.8L10 18l-1.8-6.2L2 10l6.2-1.8z"/></svg><span>星核</span></button>
+      </div>
+      <label for="controls-expand" class="controls-expander"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5h14M3 15h14M7 2v6M13 12v6"/></svg><span>观察设置</span><svg class="expand-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 12 4-4 4 4"/></svg></label>
+      <div class="control-body">
+        <div class="settings-heading"><span>星海图层</span><span>LAYERS</span></div>
+        <div class="layer-options">
+          <label class="layer-option"><span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6a7 7 0 1 1 0 8M4 2v4h4"/></svg>自动旋转</span><input id="auto-rotate" type="checkbox" checked><i class="toggle-track"></i></label>
+          <label class="layer-option"><span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 2 1.2 4.8L16 8l-4.8 1.2L10 14l-1.2-4.8L4 8l4.8-1.2zM15 13v5m-2.5-2.5h5"/></svg>星云与尘埃</span><input id="show-dust" type="checkbox" checked><i class="toggle-track"></i></label>
+        </div>
+        <div class="range-heading"><label for="zoom-slider">观察距离</label><output id="zoom-output" for="zoom-slider">1.00×</output></div>
+        <div class="range-row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4"/><path d="M1 10h3m12 0h3"/></svg><input id="zoom-slider" type="range" min="0.65" max="2.4" step="0.01" value="1" aria-label="银河缩放"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 6v8M6 10h8"/></svg></div>
+      </div>
+      <div class="explore-actions"><button id="warp-button" class="warp-button" title="星际穿越（W）" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m2 12 7-3 9-7-7 9-3 7-1-5zM2 18l3-3M2 15l1-1M5 18l1-1"/></svg><span>星际穿越</span><svg class="warp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></button><button id="reset-button" class="reset-button" title="回到银河全景（R）" aria-label="回到银河全景"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6a7 7 0 1 1 0 8M4 2v4h4"/></svg></button></div>
+    </aside>
+    <div id="camera-preview" class="camera-preview" hidden><video id="camera-video" autoplay muted playsinline></video><canvas id="hand-overlay"></canvas><div class="camera-caption"><span class="status-dot"></span><span id="camera-status">等待手掌入镜</span><button id="hide-camera" title="收起摄像头预览" aria-label="收起摄像头预览"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8"/></svg></button></div></div>
+    <footer class="atlas-footer">
+      <div class="footer-status"><span class="status-dot"></span><span class="footer-label">BEYOND THE EARTH</span><span class="footer-separator">/</span><span id="galaxy-state">自由探索</span></div>
+      <p class="interaction-hint">拖动旋转<span>·</span>滚轮缩放<span>·</span>双指缩放</p>
+      <div class="footer-detail"><span id="particle-count">—</span><span class="footer-separator">/</span><span>银河艺术演绎</span></div>
+    </footer>
+  </div>
+  <div class="loading" id="loading" role="status"><span class="loading-orbit" aria-hidden="true"></span><p>正在点亮银河</p><small>每一束光，都有一个远方</small></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <button id="exit-cinema" hidden aria-label="退出沉浸模式">退出沉浸<kbd>H</kbd></button>
+  <script type="module" src="galaxy.js?v=2"></script>
+</body>
+</html>
