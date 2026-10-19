@@ -1,0 +1,6 @@
+[build]
+  command = "node scripts/build-pages.mjs --root && node scripts/check-site.mjs --root"
+  publish = "site"
+
+[build.environment]
+  NODE_VERSION = "22"

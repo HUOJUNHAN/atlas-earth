@@ -1,5 +1,6 @@
 site/
 node_modules/
+.netlify/
 *.log
 scripts/*results.json
 scripts/*.png

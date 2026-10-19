@@ -1,3 +1,4 @@
+import {assets,loadPoints} from './atlas-load.js?v=1';
 import {sound,revealDestination} from './atlas-audio.js?v=1';
 import {cityName,cityPlace,findCityMatches,updateCapitalInfo,observeCityCard,routeDestinations} from './city-catalog.js?v=all-places1';
 const d3 = window.d3;
@@ -231,7 +232,7 @@ window.addEventListener('resize',resize);window.addEventListener('pagehide',()=>
 window.worldStatus=()=>({ready:window.__worldReady===true,zoom:state.zoom,targetZoom:state.targetZoom,countryCount:countries.length,cityCount:cities.length,selected:state.selected?.name,selectedId:state.selected?.id,selectedCountry:state.selected?.country,capitalOnly:state.capitalOnly,capitalCenters:cities.filter(c=>c.nationalCapital).length,routeCount:routePaths.length,region:state.region,visibleCities:cities.filter(c=>(state.region==='all'||c.region===state.region)&&(!state.capitalOnly||c.nationalCapital)).length,tour:state.tour,camera:state.camera,routes:state.routes,labels:state.labels,dots:state.dots});
 async function init(){
   try{
-    const [geo,data,points]=await Promise.all([fetch('./assets/world-countries.geojson').then(r=>{if(!r.ok)throw Error('地图资源未加载');return r.json();}),fetch('./assets/cities.json?v=all-places1').then(r=>{if(!r.ok)throw Error('地点数据未加载');return r.json();}),fetch('./assets/land-points.json').then(r=>r.json())]);
+    const [geo,data,points]=await Promise.all([fetch(assets.world).then(r=>{if(!r.ok)throw Error('地图资源未加载');return r.json();}),fetch('./assets/cities.json?v=all-places1').then(r=>{if(!r.ok)throw Error('地点数据未加载');return r.json();}),loadPoints(assets.mapDots)]);
     countries=geo.features.map(feature=>{if(d3.geoArea(feature)>Math.PI*2)reverseGeometry(feature.geometry);return{feature};});cities=data;
     for(let i=0;i<points.length;i+=3){const x=points[i],y=points[i+1],z=points[i+2],r=Math.hypot(x,y,z);landDots.push({lon:Math.atan2(x,z)/radians,lat:Math.asin(clamp(y/r,-1,1))/radians});}
     resize();selectCity(cities[0],false);observeCityCard('world');$('node-count').textContent=cities.length;$('country-count').textContent=countries.length;

@@ -10,6 +10,16 @@
 
 右上角扬声器可开启轻声空间氛围；城市定位、视图切换、流星和星际穿越均有独立音效。首次进入保持静音，手动开启后记住偏好，切到后台自动暂停。声音由 Web Audio 实时合成，无需下载音频或使用第三方音乐。
 
+## 快速访问
+
+[Netlify 公开站点](https://atlas-earth-xiaoyu.netlify.app/) · [三维地球](https://atlas-earth-xiaoyu.netlify.app/globe/) · [银河系](https://atlas-earth-xiaoyu.netlify.app/galaxy/)
+
+地球先显示主体，再补充云层、夜景和表面细节。粒子数据和月球贴图按需加载；贴图使用 WebP，显示用地图和粒子坐标经过紧凑编码，保留全部 558 个地点及原有粒子数量。散列资源文件使用长期缓存，页面和脚本重新验证缓存。
+
+Netlify 使用仓库中的 `netlify.toml` 构建配置。手动构建命令为 `node scripts/build-pages.mjs --root`，发布目录为 `site/`；现有站点通过 API 手动发布，尚未绑定 Git 自动部署。
+
+原始数据和纹理保留在 `dist/assets/`。需要重新生成优化资源时，先安装 `scripts/requirements-assets.txt`，再运行 `python scripts/optimize-assets.py`。日常部署不需要 Python。
+
 ## 本地预览
 
 安装 Node.js 后运行，无需安装 npm 依赖：

@@ -1,3 +1,4 @@
+import {assets,loadPoints} from './atlas-load.js?v=1';
 import {sound,revealDestination} from './atlas-audio.js?v=1';
 import * as THREE from './vendor/three.module.min.js';
 import {cityName,cityPlace,findCityMatches,updateCapitalInfo,observeCityCard,routeDestinations} from './city-catalog.js?v=all-places1';
@@ -16,9 +17,10 @@ $('auto-rotate').checked=state.rotate;
 let width=innerWidth,height=innerHeight,dpr=Math.min(devicePixelRatio,2),lastFrame=0,frameCount=0,lastFps=0;
 let renderer,scene,camera,earthGroup,earthSurface,landDots,oceanDots,atmosphere,moon,nightSurface,clouds,grid,coastline;
 const sunDirection=new THREE.Vector3(-.8,.7,1).normalize();
-let routeArcs=[],routePhotons,oceanCount=0;
+let routeArcs=[],routePhotons,oceanCount=assets.oceanCount;
+let particlesReady=false,particlesPromise,moonPromise;
 const satellites=[];
-let handController,gestureBefore='none',lastMeteorGesture=0,landCount=0,cityTargets=[],routeGroup;
+let handController,gestureBefore='none',lastMeteorGesture=0,landCount=assets.landCount,cityTargets=[],routeGroup;
 let dragging=false,pointerTravel=0,lastPointer=null,pointerStart=null,touchDistance=0;
 const pointers=new Map();
 const starCanvas=$('stars'), starCtx=starCanvas.getContext('2d');
@@ -131,6 +133,35 @@ function alignTexture(geometry){
   // triangle UV continuity and aligns all equirectangular maps with city points.
   geometry.rotateY(-Math.PI/2);
 }
+function ensureParticles(){
+  if(particlesReady)return Promise.resolve(true);
+  if(particlesPromise)return particlesPromise;
+  $('particle-mode').setAttribute('aria-busy','true');
+  particlesPromise=Promise.all([loadPoints(assets.land),loadPoints(assets.ocean)]).then(([land,ocean])=>{
+    landDots.geometry.setAttribute('position',new THREE.BufferAttribute(land,3));landDots.geometry.computeBoundingSphere();
+    oceanDots.geometry.setAttribute('position',new THREE.BufferAttribute(ocean,3));oceanDots.geometry.computeBoundingSphere();
+    landCount=land.length/3;oceanCount=ocean.length/3;particlesReady=true;return true;
+  }).catch(()=>{particlesPromise=null;setMode('realistic');toast('粒子视图暂未加载，请再点一次重试。');return false;})
+    .finally(()=>$('particle-mode').removeAttribute('aria-busy'));
+  return particlesPromise;
+}
+function loadMoonDetail(){
+  if(moonPromise)return moonPromise;
+  moonPromise=new THREE.TextureLoader().loadAsync(assets.moon).then(map=>{
+    map.colorSpace=THREE.SRGBColorSpace;moon.children[0].material.map=map;moon.children[0].material.needsUpdate=true;
+  }).catch(()=>{moonPromise=null;});
+  return moonPromise;
+}
+function loadSurfaceDetail(){
+  const loader=new THREE.TextureLoader();
+  const load=(url,colorSpace,apply)=>loader.loadAsync(url).then(map=>{
+    map.colorSpace=colorSpace;map.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);apply(map);
+  }).catch(()=>{}); // Optional visual detail never blocks exploring the globe.
+  void load(assets.night,THREE.NoColorSpace,map=>{nightSurface.material.uniforms.nightMap.value.dispose();nightSurface.material.uniforms.nightMap.value=map;});
+  void load(assets.clouds,THREE.SRGBColorSpace,map=>{clouds.material.map.dispose();clouds.material.map=map;clouds.material.needsUpdate=true;});
+  void load('./assets/earth-normal.jpg',THREE.NoColorSpace,map=>{earthSurface.material.normalMap=map;earthSurface.material.needsUpdate=true;});
+  void load('./assets/earth-specular.jpg',THREE.NoColorSpace,map=>{earthSurface.material.specularMap=map;earthSurface.material.needsUpdate=true;});
+}
 async function init(){
   try{
     renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
@@ -141,16 +172,19 @@ async function init(){
     earthGroup=new THREE.Group();earthGroup.rotation.order='XYZ';scene.add(earthGroup);
     const core=new THREE.Mesh(new THREE.SphereGeometry(.999,96,64),new THREE.MeshPhongMaterial({color:0x082440,emissive:0x010611,shininess:18,specular:0x10273b}));earthGroup.add(core);
     const loader=new THREE.TextureLoader();
-    const [land,oceans,texture,normalMap,specularMap,nightMap,cloudMap,cityInfo,coasts]=await Promise.all([
-      fetch('./assets/land-points-dense.json?v=equal-area').then(r=>{if(!r.ok)throw Error('陆地数据未加载');return r.json();}),
-      fetch('./assets/ocean-points-dense.json?v=equal-area').then(r=>r.json()),loader.loadAsync('./assets/earth-day.jpg'),
-      loader.loadAsync('./assets/earth-normal.jpg'),loader.loadAsync('./assets/earth-specular.jpg'),loader.loadAsync('./assets/earth-night.png'),loader.loadAsync('./assets/earth-clouds.png'),
-      fetch('./assets/cities.json?v=all-places1').then(r=>{if(!r.ok)throw Error('地点数据未加载');return r.json();}),fetch('./assets/ne_110m_land.geojson').then(r=>r.json())
+    // Show a fully usable Earth first. Surface detail streams in after its first frame.
+    const [texture,cityInfo,coasts]=await Promise.all([
+      loader.loadAsync(assets.day),
+      fetch('./assets/cities.json?v=all-places1').then(r=>{if(!r.ok)throw Error('地点数据未加载');return r.json();}),
+      fetch('./assets/ne_110m_land.geojson').then(r=>r.json())
     ]);
+    const nightMap=new THREE.DataTexture(new Uint8Array([0,0,0,255]),1,1);nightMap.needsUpdate=true;
+    const cloudMap=new THREE.DataTexture(new Uint8Array([0,0,0,0]),1,1);cloudMap.needsUpdate=true;
+    const normalMap=null,specularMap=null;
     texture.colorSpace=THREE.SRGBColorSpace;
     cloudMap.colorSpace=THREE.SRGBColorSpace;nightMap.colorSpace=THREE.NoColorSpace;
     cities.push(...cityInfo.map((city,index)=>({...city,index,position:coords(city.lat,city.lon,1.015)})));
-    for(const map of [texture,normalMap,specularMap,nightMap,cloudMap])map.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);
+    for(const map of [texture,nightMap,cloudMap])map.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);
     const surfaceGeo=new THREE.SphereGeometry(1,128,96);alignTexture(surfaceGeo);
     earthSurface=new THREE.Mesh(surfaceGeo,new THREE.MeshPhongMaterial({map:texture,normalMap,normalScale:new THREE.Vector2(.07,.07),specularMap,transparent:true,opacity:1,shininess:36,specular:0x52667a,depthWrite:false}));earthGroup.add(earthSurface);
     const nightGeo=new THREE.SphereGeometry(1.002,96,64);alignTexture(nightGeo);
@@ -165,7 +199,7 @@ async function init(){
         }`,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));earthGroup.add(nightSurface);
     const cloudGeo=new THREE.SphereGeometry(1.010,96,64);alignTexture(cloudGeo);
     clouds=new THREE.Mesh(cloudGeo,new THREE.MeshPhongMaterial({map:cloudMap,transparent:true,opacity:.33,depthWrite:false,color:0xe5f0ff,shininess:0,alphaTest:.015}));earthGroup.add(clouds);
-    landCount=land.length/3;oceanCount=oceans.length/3;landDots=earthParticles(land);earthGroup.add(landDots);oceanDots=earthParticles(oceans,true);earthGroup.add(oceanDots);grid=makeGrid();earthGroup.add(grid);coastline=makeCoastline(coasts);earthGroup.add(coastline);
+    landDots=earthParticles([]);earthGroup.add(landDots);oceanDots=earthParticles([],true);earthGroup.add(oceanDots);grid=makeGrid();earthGroup.add(grid);coastline=makeCoastline(coasts);earthGroup.add(coastline);
     // Named lights are all in the shared catalog. Draw their selectable pins in
     // one canvas pass instead of creating two GPU sprites for every location.
     for(let i=0;i<3;i++){
@@ -184,7 +218,7 @@ async function init(){
       gl_FragColor=vec4(mix(vec3(0.035,0.20,0.55),vec3(0.16,0.59,1.0),daylight),rim*glowStrength*(0.32+0.68*daylight));}`,
       transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.BackSide}));scene.add(atmosphere);
     moon=new THREE.Group();moon.position.set(1.67,-.88,-1.15);moon.scale.setScalar(.72);scene.add(moon);
-    const moonMap=await new THREE.TextureLoader().loadAsync('./assets/moon-texture.png');moonMap.colorSpace=THREE.SRGBColorSpace;
+    const moonMap=null;
     moon.add(new THREE.Mesh(new THREE.SphereGeometry(.21,48,32),new THREE.MeshPhongMaterial({color:0xb9c3d0,map:moonMap,emissive:0x030710,shininess:0})));
     moon.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(.213,4)),new THREE.LineBasicMaterial({color:0x749ec8,transparent:true,opacity:.13})));
     const lunar=[];for(let i=0;i<2100;i++){const y=random()*2-1,a=random()*TAU,r=.214*Math.sqrt(1-y*y);lunar.push(r*Math.cos(a),y*.214,r*Math.sin(a));}
@@ -192,6 +226,7 @@ async function init(){
     $('particle-count').textContent=landCount.toLocaleString()+' 点';$('city-count').textContent=cities.length+' 节点';
     state.selected=cities[0];updateCityCard(cities[0]);resize();observeCityCard('globe');$('loading').style.opacity='0';setTimeout(()=>$('loading').hidden=true,750);
     lastFps=performance.now();requestAnimationFrame(frame);window.__earthReady=true;
+    requestAnimationFrame(()=>setTimeout(loadSurfaceDetail,0));
     if(new URLSearchParams(location.search).has('demo'))startDemo();
   }catch(error){console.error(error);$('loading').querySelector('p').textContent='星球加载遇到问题';$('loading').querySelector('small').textContent='请使用启动脚本打开网页，或刷新后重试。';toast(error.message,8000);}
 }
@@ -244,7 +279,7 @@ function updateCityCard(city){
   $('globe-city-region').textContent=cityPlace(city);updateCapitalInfo(city,'globe-city');$('globe-city-coordinate').textContent=Math.abs(city.lat).toFixed(2)+'° '+(city.lat>=0?'N':'S')+' / '+Math.abs(city.lon).toFixed(2)+'° '+(city.lon>=0?'E':'W');
   const intro=$('globe-city-description');if(intro){intro.textContent=city.description||'';intro.hidden=!city.description;}
 }
-function setMode(mode){if(mode!==state.mode)sound.play('view');state.mode=mode;$('realistic-mode')?.setAttribute('aria-pressed',String(mode==='realistic'));$('particle-mode')?.setAttribute('aria-pressed',String(mode==='particle'));}
+function setMode(mode){if(mode!==state.mode)sound.play('view');if(mode==='particle')void ensureParticles();state.mode=mode;$('realistic-mode')?.setAttribute('aria-pressed',String(mode==='realistic'));$('particle-mode')?.setAttribute('aria-pressed',String(mode==='particle'));}
 function focusCity(city,zoom=state.mode==='particle'?1.85:1.35){
   if(!window.__earthReady||!city)return;sound.play('city',city);revealDestination(document.querySelector('.city-card'));
   if(state.capitalOnly&&!city.nationalCapital){state.capitalOnly=false;$('capital-only').checked=false;}
@@ -269,7 +304,7 @@ function frame(time){
   const lerp=1-Math.exp(-dt*7);state.yaw+=(state.targetYaw-state.yaw)*lerp;state.pitch+=(state.targetPitch-state.pitch)*lerp;state.zoom+=(state.targetZoom-state.zoom)*(1-Math.exp(-dt*5.2));
   earthGroup.rotation.set(state.pitch,state.yaw,0);earthGroup.updateMatrixWorld(true);
   const portrait=Math.max(1,.83/camera.aspect);camera.position.z=1+(camera.aspect<.83?4.55:4.0)/state.zoom*portrait;
-  const targetDetail=state.demo?smooth(1.25,2.3,state.zoom):(state.mode==='particle'?1:0);state.particleMix+=(targetDetail-state.particleMix)*(1-Math.exp(-dt*5));
+  const targetDetail=particlesReady?(state.demo?smooth(1.25,2.3,state.zoom):(state.mode==='particle'?1:0)):0;state.particleMix+=(targetDetail-state.particleMix)*(1-Math.exp(-dt*5));
   const detail=state.particleMix;earthSurface.material.opacity=1-detail;earthSurface.visible=detail<.998;
   nightSurface.material.uniforms.visibility.value=1-detail;nightSurface.visible=detail<.998;
   clouds.rotation.y+=dt*.008;clouds.material.opacity=.36*(1-detail);clouds.visible=detail<.98;
@@ -321,7 +356,7 @@ const demoFrames=[
   [19.6,2.15,-481.47,31.23],[20.6,2.2,-499.69,35.68],[22,2.2,-597.58,37.77],[23.4,2.2,-719.87,51.51],
   [24.9,2.2,-722.35,48.86],[26.3,2.2,-748.98,41.01],[27.6,2.2,-757.62,55.76],[29,1,-825,21]
 ];
-function startDemo(){sound.play('tour');
+function startDemo(){sound.play('tour');void ensureParticles();void loadMoonDetail();
   if(!window.__earthReady)return;
   state.capitalOnly=false;$('capital-only').checked=false;
   state.demo=true;state.tracking=false;demoStarted=performance.now();demoAction=-1;$('demo-button').setAttribute('aria-pressed','true');$('demo-progress').hidden=false;
@@ -387,5 +422,5 @@ window.addEventListener('keydown',e=>{if(/INPUT|TEXTAREA/.test(e.target.tagName)
 document.addEventListener('visibilitychange',()=>{if(document.hidden){lastFrame=0;handController?.pause?.();}else{handController?.resume?.();state.lastInteraction=performance.now();}});
 window.addEventListener('pagehide',()=>handController?.stop());
 // Small, read-only status surface used by the local QA workflow.
-window.earthStatus=()=>({ready:!!renderer&&landCount>0,zoom:state.zoom,targetZoom:state.targetZoom,selected:state.selected?.name??null,selectedId:state.selected?.id,selectedCountry:state.selected?.country,selectedScreen:cityTargets.filter(t=>t.city===state.selected).map(t=>({x:t.x,y:t.y}))[0]??null,hovered:state.hover?.name??null,labelsDrawn:labelCount,capitalOnly:state.capitalOnly,capitalCenters:cities.filter(c=>c.nationalCapital).length,visibleCities:cities.filter(c=>!state.capitalOnly||c.nationalCapital).length,routeCount:routeArcs.length,demo:state.demo,camera:state.camera,landPoints:landCount,oceanPoints:oceanCount,cityLights:cities.length,cities:cities.length,cinema:state.cinema,mode:state.mode,particleMix:state.particleMix,routes:state.routes,labels:state.labels,rotation:state.rotate,clouds:!!clouds,nightLights:!!nightSurface,renderFrames:renderer?.info?.render?.frame??0,drawCalls:renderer?.info?.render?.calls??0});
+window.earthStatus=()=>({ready:window.__earthReady===true,particlesReady,zoom:state.zoom,targetZoom:state.targetZoom,selected:state.selected?.name??null,selectedId:state.selected?.id,selectedCountry:state.selected?.country,selectedScreen:cityTargets.filter(t=>t.city===state.selected).map(t=>({x:t.x,y:t.y}))[0]??null,hovered:state.hover?.name??null,labelsDrawn:labelCount,capitalOnly:state.capitalOnly,capitalCenters:cities.filter(c=>c.nationalCapital).length,visibleCities:cities.filter(c=>!state.capitalOnly||c.nationalCapital).length,routeCount:routeArcs.length,demo:state.demo,camera:state.camera,landPoints:landCount,oceanPoints:oceanCount,cityLights:cities.length,cities:cities.length,cinema:state.cinema,mode:state.mode,particleMix:state.particleMix,routes:state.routes,labels:state.labels,rotation:state.rotate,clouds:!!clouds,nightLights:!!nightSurface,renderFrames:renderer?.info?.render?.frame??0,drawCalls:renderer?.info?.render?.calls??0});
 init();
